@@ -31,6 +31,7 @@ tasks:
       - npx tsx examples/dashed-line.ts > test-output/dashed-line.svg
       - npx tsx examples/dashed-polygon.ts > test-output/dashed-polygon.svg
       - npx tsx examples/dashed-ellipse.ts > test-output/dashed-ellipse.svg
+      - npx tsx examples/barchart.ts > test-output/barchart.svg
       - echo "Tests completed. All SVGs are in 'test-output/' directory."
 
   lint:

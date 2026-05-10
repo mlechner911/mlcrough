@@ -22,7 +22,8 @@
     "example:dashed-rectangle": "tsx examples/dashed-rectangle.ts",
     "example:dashed-line": "tsx examples/dashed-line.ts",
     "example:dashed-polygon": "tsx examples/dashed-polygon.ts",
-    "example:dashed-ellipse": "tsx examples/dashed-ellipse.ts"
+    "example:dashed-ellipse": "tsx examples/dashed-ellipse.ts",
+    "example:barchart": "tsx examples/barchart.ts"
   },
   "repository": {
     "type": "git",
