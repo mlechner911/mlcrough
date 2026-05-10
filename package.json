@@ -1,0 +1,60 @@
+{
+  "name": "roughjs",
+  "version": "4.6.6",
+  "description": "Create graphics using SVG with a hand-drawn, sketchy, appearance.",
+  "type": "module",
+  "main": "bundled/rough.cjs.js",
+  "module": "bundled/rough.esm.js",
+  "types": "bin/rough.d.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "rm -rf bin && tsc && node build.js",
+    "lint": "eslint src",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "example:rectangle": "tsx examples/rectangle.ts",
+    "example:rectangle2": "tsx examples/rectangle2.ts",
+    "example:circle": "tsx examples/circle.ts",
+    "example:ellipse": "tsx examples/ellipse.ts",
+    "example:line": "tsx examples/line.ts",
+    "example:polygon": "tsx examples/polygon.ts",
+    "example:dashed-rectangle": "tsx examples/dashed-rectangle.ts",
+    "example:dashed-line": "tsx examples/dashed-line.ts",
+    "example:dashed-polygon": "tsx examples/dashed-polygon.ts",
+    "example:dashed-ellipse": "tsx examples/dashed-ellipse.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pshihn/rough.git"
+  },
+  "keywords": [
+    "svg",
+    "graphics",
+    "sketchy",
+    "hand drawn",
+    "hand-drawn"
+  ],
+  "author": "Preet Shihn <preetshihn@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pshihn/rough/issues"
+  },
+  "homepage": "https://roughjs.com",
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "esbuild": "^0.24.0",
+    "eslint": "^9.0.0",
+    "tslib": "^2.6.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.59.2",
+    "vite": "^6.0.0"
+  },
+  "dependencies": {
+    "hachure-fill": "^0.5.2",
+    "path-data-parser": "^0.1.0",
+    "points-on-curve": "^0.2.0",
+    "points-on-path": "^0.2.1"
+  }
+}

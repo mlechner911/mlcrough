@@ -1,0 +1,44 @@
+version: '3'
+
+tasks:
+  default:
+    cmds:
+      - task --list
+    silent: true
+
+  dev:
+    desc: Start Vite development playground
+    cmds:
+      - npm run dev
+
+  build:
+    desc: Build the library (ESM, CJS, IIFE)
+    cmds:
+      - npm run build
+
+  test:
+    desc: Run all command-line examples as tests and save output to test-output/
+    cmds:
+      - mkdir -p test-output
+      - echo "Running all examples..."
+      - npx tsx examples/rectangle.ts > test-output/rectangle.svg
+      - npx tsx examples/rectangle2.ts > test-output/rectangle2.svg
+      - npx tsx examples/circle.ts > test-output/circle.svg
+      - npx tsx examples/ellipse.ts > test-output/ellipse.svg
+      - npx tsx examples/line.ts > test-output/line.svg
+      - npx tsx examples/polygon.ts > test-output/polygon.svg
+      - npx tsx examples/dashed-rectangle.ts > test-output/dashed-rectangle.svg
+      - npx tsx examples/dashed-line.ts > test-output/dashed-line.svg
+      - npx tsx examples/dashed-polygon.ts > test-output/dashed-polygon.svg
+      - npx tsx examples/dashed-ellipse.ts > test-output/dashed-ellipse.svg
+      - echo "Tests completed. All SVGs are in 'test-output/' directory."
+
+  lint:
+    desc: Run ESLint
+    cmds:
+      - npm run lint
+
+  clean:
+    desc: Remove build artifacts and test output
+    cmds:
+      - rm -rf bin bundled test-output
