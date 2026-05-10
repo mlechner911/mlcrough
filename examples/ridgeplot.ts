@@ -99,7 +99,13 @@ function generate3DAreaChart(datasets: SeriesData[], options: RidgeOptions = {})
 
   return `
 <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-  <rect width="100%" height="100%" fill="#ffffff" />
+  <defs>
+    <linearGradient id="mistGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#eef2f3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#mistGradient)" />
   ${elements.join('\n  ')}
 </svg>
   `.trim();
