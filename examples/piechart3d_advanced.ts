@@ -134,20 +134,13 @@ function generate3DPie(data: PieData[], options: PieOptions = {}): string {
     const textDist = radius * 0.65;
     const tx = x + Math.cos(midAngle) * textDist;
     const ty = y + Math.sin(midAngle) * textDist * flatten;
-    elements.push(`
-      <text x="${tx}" y="${ty}" text-anchor="middle" dominant-baseline="middle" 
-            fill="black" font-family="sans-serif" font-weight="bold" font-size="14px"
-            style="paint-order: stroke; stroke: white; stroke-width: 3px; pointer-events: none;">
-        ${d.label}
-      </text>`);
+    elements.push(`<text x="${tx}" y="${ty}" text-anchor="middle" dominant-baseline="middle" fill="black" font-family="sans-serif" font-weight="bold" font-size="14px" style="paint-order: stroke; stroke: white; stroke-width: 3px; pointer-events: none;">${d.label}</text>`);
   });
 
-  return `
-<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+  return `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
   <rect width="100%" height="100%" fill="#ffffff" />
-  ${elements.join('\n  ')}
-</svg>
-  `.trim();
+  ${elements.join('')}
+</svg>`;
 }
 
 // Example execution:

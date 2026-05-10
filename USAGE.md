@@ -103,6 +103,8 @@ rc.circle(100, 100, 150, {
 
 By combining multiple paths and using the **Painter's Algorithm** (drawing back-to-front), you can create sophisticated 3D visualizations.
 
+For a full list of examples and visual outputs, see the [Visual Gallery](test-output/README.md).
+
 ```javascript
 // Simplified 3D Bar logic
 const barFront = rc.rectangle(x, y, w, h, { fill: 'blue' });

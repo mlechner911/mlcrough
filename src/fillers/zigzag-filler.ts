@@ -3,6 +3,9 @@ import { polygonHachureLines } from './scan-line-hachure';
 import { ResolvedOptions, OpSet } from '../core';
 import { Point, Line, lineLength } from '../geometry';
 
+/**
+ * A filler that produces a zigzag pattern.
+ */
 export class ZigZagFiller extends HachureFiller {
   fillPolygons(polygonList: Point[][], o: ResolvedOptions): OpSet {
     let gap = o.hachureGap;

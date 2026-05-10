@@ -3,6 +3,9 @@ import { ResolvedOptions, OpSet, Op } from '../core';
 import { Point, Line, lineLength } from '../geometry';
 import { polygonHachureLines } from './scan-line-hachure';
 
+/**
+ * A filler that produces a dotted pattern.
+ */
 export class DotFiller implements PatternFiller {
   private helper: RenderHelper;
 

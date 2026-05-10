@@ -3,6 +3,9 @@ import { ResolvedOptions, OpSet, Op } from '../core';
 import { Point, Line } from '../geometry';
 import { polygonHachureLines } from './scan-line-hachure';
 
+/**
+ * The default hachure filler.
+ */
 export class HachureFiller implements PatternFiller {
   private helper: RenderHelper;
 

@@ -3,6 +3,9 @@ import { ResolvedOptions, OpSet, Op } from '../core';
 import { Point, Line, lineLength } from '../geometry';
 import { polygonHachureLines } from './scan-line-hachure';
 
+/**
+ * A filler that produces dashed lines.
+ */
 export class DashedFiller implements PatternFiller {
   private helper: RenderHelper;
 

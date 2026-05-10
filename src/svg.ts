@@ -192,7 +192,10 @@ export class StringRenderer implements SVGRenderer<SVGNode> {
  * Serializes an SVGNode to an SVG string.
  */
 export function serializeSVG(node: SVGNode): string {
-  const attrs = Object.keys(node.attributes).map((k) => `${k}="${node.attributes[k]}"`).join(' ');
+  const attrKeys = Object.keys(node.attributes);
+  const attrs = attrKeys.length > 0
+    ? ' ' + attrKeys.map((k) => `${k}="${node.attributes[k]}"`).join(' ')
+    : '';
   const children = node.children.map(serializeSVG).join('');
-  return `<${node.tag} ${attrs}>${children}</${node.tag}>`;
+  return `<${node.tag}${attrs}>${children}</${node.tag}>`;
 }

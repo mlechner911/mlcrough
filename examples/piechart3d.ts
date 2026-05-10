@@ -82,29 +82,22 @@ function create3DPieChart(data: PieData[], options: PieOptions = {}): string {
 
     elements.push(mlcrough.serialize(top));
 
-    // 3. TEXT PLACEMENT
+    // --- 3. TEXT PLACEMENT ---
     const textDist = radius * 0.6;
     const tx = x + Math.cos(midAngle) * textDist;
     const ty = y + Math.sin(midAngle) * textDist * flatten;
 
-    elements.push(`
-      <text x="${tx}" y="${ty}" text-anchor="middle" dominant-baseline="middle" 
-            fill="white" font-family="sans-serif" font-size="14" font-weight="bold" 
-            style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8); pointer-events: none;">
-        ${d.label}
-      </text>
-    `);
+    elements.push(`<text x="${tx}" y="${ty}" text-anchor="middle" dominant-baseline="middle" fill="white" font-family="sans-serif" font-size="14" font-weight="bold" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8); pointer-events: none;">${d.label}</text>`);
 
     startAngle = endAngle;
-  });
+    });
 
-  return `
-<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-  <rect width="100%" height="100%" fill="#f8f9fa" />
-  ${elements.join('\n  ')}
-</svg>
-  `.trim();
-}
+    return `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100%" height="100%" fill="#f8f9fa" />
+    ${elements.join('')}
+    </svg>`;
+    }
+
 
 // Example execution:
 const myData: PieData[] = [

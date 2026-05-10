@@ -72,29 +72,15 @@ function createPieChart(data: PieData[], options: PieOptions = {}): string {
     const lx = x + Math.cos(labelAngle) * labelRadius;
     const ly = y + Math.sin(labelAngle) * labelRadius;
 
-    elements.push(`
-      <text 
-        x="${lx}" 
-        y="${ly}" 
-        text-anchor="middle" 
-        font-family="sans-serif" 
-        font-size="14" 
-        font-weight="bold"
-        fill="white"
-        style="text-shadow: 1px 1px 2px rgba(0,0,0,0.5)">
-        ${d.label}
-      </text>
-    `);
+    elements.push(`<text x="${lx}" y="${ly}" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="white" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.5)">${d.label}</text>`);
 
     startAngle = endAngle;
   });
 
-  return `
-<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+  return `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
   <rect width="100%" height="100%" fill="#f8f9fa" />
-  ${elements.join('\n  ')}
-</svg>
-  `.trim();
+  ${elements.join('')}
+</svg>`;
 }
 
 // Example execution:
