@@ -10,15 +10,27 @@ This project is a modernized fork of the excellent [Rough.js](https://github.com
 - **Pure ES6/ESM:** Re-architected as a clean ES6 module for 2026 standards.
 - **Modern TypeScript:** Fully updated to **TypeScript 6.0** with strict typing and improved API ergonomics.
 - **Advanced Textures:** New fill styles for artistic shading, including `multi-hachure`, `multi-dots`, and position-based `gradient` and `radial-gradient`.
-- **Refactored Architecture:** Modularized source code with a stateful `MLCRoughRenderer` and specialized shape modules for better maintainability and extensibility.
+- **Refactored Architecture:** Modularized source code with a stateful `Renderer` and specialized shape modules for easier maintainability and extensibility.
 
 ## Installation
 
 ```bash
-npm install --save mlcrough
+npm install mlcrough
 ```
 
-Or get the latest using unpkg: `https://unpkg.com/mlcrough@latest/dist/mlcrough.js`
+### CDN (Browser)
+
+You can use **mlcrough** directly in the browser via [unpkg](https://unpkg.com/mlcrough):
+
+```html
+<script type="module">
+  import mlcrough from 'https://unpkg.com/mlcrough';
+  
+  const rc = mlcrough.svgString();
+  const node = rc.rectangle(10, 10, 200, 200);
+  console.log(mlcrough.serialize(node));
+</script>
+```
 
 ## Usage
 
