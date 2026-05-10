@@ -9,6 +9,7 @@ import { ZigZagLineFiller } from './zigzag-line-filler';
 import { MultiHachureFiller } from './multi-hachure-filler';
 import { GradientFiller } from './gradient-filler';
 import { RadialGradientFiller } from './radial-gradient-filler';
+import { MultiDotFiller } from './multi-dot-filler';
 
 const fillers: Partial<Record<FillStyle, PatternFiller>> = {};
 
@@ -24,6 +25,9 @@ export function getFiller(o: ResolvedOptions, helper: RenderHelper): PatternFill
         break;
       case 'dots':
         fillers[fillerName] = new DotFiller(helper);
+        break;
+      case 'multi-dots':
+        fillers[fillerName] = new MultiDotFiller(helper);
         break;
       case 'dashed':
         fillers[fillerName] = new DashedFiller(helper);

@@ -1,6 +1,6 @@
 # MLCRough
 
-MLCRough is a small (<9KB gzipped) graphics library that lets you draw in a **hand-drawn**, **sketchy** style.
+MLCRough is a small (~10KB gzipped) graphics library that lets you draw in a **hand-drawn**, **sketchy** style.
 
 ### Origin and Modernization
 This project is a modernized fork of the excellent [Rough.js](https://github.com/pshihn/rough) by Preet Shihn.

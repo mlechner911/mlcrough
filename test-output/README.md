@@ -29,6 +29,9 @@ This gallery shows the output of the library across various shapes and complex e
 ## line.svg
 ![line.svg](line.svg)
 
+## multi_dot_fill.svg
+![multi_dot_fill.svg](multi_dot_fill.svg)
+
 ## multi_style_fill.svg
 ![multi_style_fill.svg](multi_style_fill.svg)
 

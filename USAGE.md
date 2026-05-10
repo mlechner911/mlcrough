@@ -66,7 +66,7 @@ Most drawing methods accept an `options` object as the last parameter.
 | `stroke` | `string` | Color of the line (e.g., '#000', 'red'). |
 | `strokeWidth` | `number` | Thickness of the line. |
 | `fill` | `string` | Color to fill the shape with. |
-| `fillStyle` | `string` | Style of the fill: `'hachure'`, `'solid'`, `'zigzag'`, `'cross-hatch'`, `'dots'`, `'dashed'`, `'zigzag-line'`, `'multi-hachure'`, `'gradient'`, `'radial-gradient'`. |
+| `fillStyle` | `string` | Style of the fill: `'hachure'`, `'solid'`, `'zigzag'`, `'cross-hatch'`, `'dots'`, `'dashed'`, `'zigzag-line'`, `'multi-hachure'`, `'gradient'`, `'radial-gradient'`, `'multi-dots'`. |
 | `opacity` | `number` | Transparency level (0.0 to 1.0) for the stroke or fill. |
 | `roughness` | `number` | How "messy" the lines are (default: 1). |
 | `bowing` | `number` | How much lines curve (default: 1). |
