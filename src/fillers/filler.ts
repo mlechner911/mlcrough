@@ -1,4 +1,4 @@
-import { ResolvedOptions } from '../core';
+import { ResolvedOptions, FillStyle } from '../core';
 import { PatternFiller, RenderHelper } from './filler-interface';
 import { HachureFiller } from './hachure-filler';
 import { ZigZagFiller } from './zigzag-filler';
@@ -7,37 +7,28 @@ import { DotFiller } from './dot-filler';
 import { DashedFiller } from './dashed-filler';
 import { ZigZagLineFiller } from './zigzag-line-filler';
 
-const fillers: { [name: string]: PatternFiller } = {};
+const fillers: Partial<Record<FillStyle, PatternFiller>> = {};
 
 export function getFiller(o: ResolvedOptions, helper: RenderHelper): PatternFiller {
-  let fillerName = o.fillStyle || 'hachure';
+  let fillerName: FillStyle = o.fillStyle || 'hachure';
   if (!fillers[fillerName]) {
     switch (fillerName) {
       case 'zigzag':
-        if (!fillers[fillerName]) {
-          fillers[fillerName] = new ZigZagFiller(helper);
-        }
+        fillers[fillerName] = new ZigZagFiller(helper);
         break;
       case 'cross-hatch':
-        if (!fillers[fillerName]) {
-          fillers[fillerName] = new HatchFiller(helper);
-        }
+        fillers[fillerName] = new HatchFiller(helper);
         break;
       case 'dots':
-        if (!fillers[fillerName]) {
-          fillers[fillerName] = new DotFiller(helper);
-        }
+        fillers[fillerName] = new DotFiller(helper);
         break;
       case 'dashed':
-        if (!fillers[fillerName]) {
-          fillers[fillerName] = new DashedFiller(helper);
-        }
+        fillers[fillerName] = new DashedFiller(helper);
         break;
       case 'zigzag-line':
-        if (!fillers[fillerName]) {
-          fillers[fillerName] = new ZigZagLineFiller(helper);
-        }
+        fillers[fillerName] = new ZigZagLineFiller(helper);
         break;
+      case 'solid':
       case 'hachure':
       default:
         fillerName = 'hachure';
@@ -47,5 +38,5 @@ export function getFiller(o: ResolvedOptions, helper: RenderHelper): PatternFill
         break;
     }
   }
-  return fillers[fillerName];
+  return fillers[fillerName] as PatternFiller;
 }
