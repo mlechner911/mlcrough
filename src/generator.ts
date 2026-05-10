@@ -1,4 +1,4 @@
-import { Config, Options, Drawable, OpSet, Op, ResolvedOptions, PathInfo } from './core.js';
+import { Config, Options, Drawable, OpSet, Op, ResolvedOptions, PathInfo, RoughShape } from './core.js';
 import { Point } from './geometry.js';
 import { RoughRenderer } from './renderer.js';
 import { randomSeed } from './math.js';
@@ -60,7 +60,7 @@ export class RoughGenerator {
     return options ? Object.assign({}, this.defaultOptions, options) : this.defaultOptions;
   }
 
-  private _d(shape: string, sets: OpSet[], options: ResolvedOptions): Drawable {
+  private _d(shape: RoughShape, sets: OpSet[], options: ResolvedOptions): Drawable {
     return { shape, sets: sets || [], options: options || this.defaultOptions };
   }
 

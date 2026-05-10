@@ -8,6 +8,7 @@ export interface Config {
 }
 
 export type FillStyle = 'hachure' | 'solid' | 'zigzag' | 'cross-hatch' | 'dots' | 'dashed' | 'zigzag-line';
+export type RoughShape = 'line' | 'rectangle' | 'ellipse' | 'circle' | 'linearPath' | 'polygon' | 'arc' | 'curve' | 'path';
 
 export interface Options {
   maxRandomnessOffset?: number;
@@ -79,7 +80,7 @@ export interface OpSet {
 }
 
 export interface Drawable {
-  shape: string;
+  shape: RoughShape;
   options: ResolvedOptions;
   sets: OpSet[];
 }
