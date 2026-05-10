@@ -4,18 +4,15 @@ import { MLCRoughRenderer, normalizePath } from './renderer.js';
 import { randomSeed } from './math.js';
 import * as poc_module from 'points-on-curve';
 import * as poc_bezier_module from 'points-on-curve/lib/curve-to-bezier.js';
-import * as pop_module from 'points-on-path';
+import { pointsOnPath } from './path-data.js';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const poc: any = poc_module;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const poc_bezier: any = poc_bezier_module;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const pop: any = pop_module;
 
 const curveToBezier = poc_bezier.curveToBezier || poc_bezier.default?.curveToBezier || poc_bezier.default;
 const pointsOnBezierCurves = poc.pointsOnBezierCurves || poc.default?.pointsOnBezierCurves;
-const pointsOnPath = pop.pointsOnPath || pop.default?.pointsOnPath;
 
 const NOS = 'none';
 

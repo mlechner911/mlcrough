@@ -2,21 +2,14 @@ import { ResolvedOptions, Op, OpSet } from './core.js';
 import { Point } from './geometry.js';
 import { getFiller } from './fillers/filler.js';
 import { RenderHelper } from './fillers/filler-interface.js';
-import * as pdp_module from 'path-data-parser';
+import { parsePath, absolutize, normalize, Segment } from './path-data.js';
 import { GeometricContext, createGeometricContext, offset, offsetOpt } from './renderer-core.js';
 import { doubleLine } from './shapes/line.js';
 import { curve, curveWithOffset, bezierTo } from './shapes/curve.js';
 import { computeEllipsePoints } from './shapes/ellipse.js';
 import { arc } from './shapes/arc.js';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const pdp: any = pdp_module;
-const parsePath = pdp.parsePath || pdp.default?.parsePath;
-const normalize = pdp.normalize || pdp.default?.normalize;
-const absolutize = pdp.absolutize || pdp.default?.absolutize;
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function serialize(segments: any[]): string {
+function serialize(segments: Segment[]): string {
   let path = '';
   for (const s of segments) {
     path += `${s.key}${s.data.join(' ')} `;
