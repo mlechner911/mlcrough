@@ -1,6 +1,5 @@
 .cache
 .DS_Store
 node_modules
-z
 dist
 bug.html
