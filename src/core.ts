@@ -7,6 +7,8 @@ export interface Config {
   options?: Options;
 }
 
+export type FillStyle = 'hachure' | 'solid' | 'zigzag' | 'cross-hatch' | 'dots' | 'dashed' | 'zigzag-line';
+
 export interface Options {
   maxRandomnessOffset?: number;
   roughness?: number;
@@ -17,7 +19,7 @@ export interface Options {
   curveTightness?: number;
   curveStepCount?: number;
   fill?: string;
-  fillStyle?: string;
+  fillStyle?: FillStyle;
   fillWeight?: number;
   hachureAngle?: number;
   hachureGap?: number;
@@ -46,7 +48,7 @@ export interface ResolvedOptions extends Options {
   curveFitting: number;
   curveTightness: number;
   curveStepCount: number;
-  fillStyle: string;
+  fillStyle: FillStyle;
   fillWeight: number;
   hachureAngle: number;
   hachureGap: number;
