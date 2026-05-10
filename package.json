@@ -26,7 +26,8 @@
     "example:barchart": "tsx examples/barchart.ts",
     "example:piechart": "tsx examples/piechart.ts",
     "example:piechart3d": "tsx examples/piechart3d.ts",
-    "example:piechart3d-advanced": "tsx examples/piechart3d_advanced.ts"
+    "example:piechart3d-advanced": "tsx examples/piechart3d_advanced.ts",
+    "example:ridgeplot": "tsx examples/ridgeplot.ts"
   },
   "repository": {
     "type": "git",
