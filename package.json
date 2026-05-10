@@ -10,7 +10,7 @@
   "types": "dist/mlcrough.d.ts",
   "scripts": {
     "dev": "node build.js --watch",
-    "build": "rm -rf dist && tsc --emitDeclarationOnly --declarationDir dist --declaration && node build.js",
+    "build": "rm -rf dist && tsc --noEmit && node build.js && dts-bundle-generator -o dist/mlcrough.d.ts src/mlcrough.ts",
     "lint": "eslint src",
     "test": "echo \"Error: no test specified\" && exit 1",
     "example:rectangle": "tsx examples/rectangle.ts",
@@ -53,6 +53,7 @@
     "@eslint/js": "^9.39.4",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
+    "dts-bundle-generator": "^9.5.1",
     "esbuild": "^0.24.0",
     "eslint": "^9.0.0",
     "tslib": "^2.6.0",
