@@ -122,7 +122,7 @@ function generate3DPie(data: PieData[], options: PieOptions = {}): string {
     // Colored hachure fill
     elements.push(mlcrough.serialize(rc.path(topPath, {
       fill: d.color,
-      fillStyle: 'hachure',
+      fillStyle: 'multi-hachure',
       hachureAngle: 60,
       hachureGap: 5,
       fillWeight: 1.5, // Thicker hachure lines

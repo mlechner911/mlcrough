@@ -60,7 +60,7 @@ function createPieChart(data: PieData[], options: PieOptions = {}): string {
 
     const slice = rc.path(pathData, {
       fill: d.color,
-      fillStyle: 'hachure',
+      fillStyle: 'multi-hachure',
       hachureAngle: 45,
       hachureGap: 5,
     });

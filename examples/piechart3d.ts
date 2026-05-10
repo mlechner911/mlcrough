@@ -75,10 +75,11 @@ function create3DPieChart(data: PieData[], options: PieOptions = {}): string {
     const topPath = `M ${x} ${y} L ${x1} ${y1} A ${radius} ${radius * flatten} 0 ${largeArc} 1 ${x2} ${y2} Z`;
     const top = rc.path(topPath, {
       fill: d.color,
-      fillStyle: 'hachure',
+      fillStyle: 'multi-hachure',
       hachureAngle: 45,
       hachureGap: 5,
     });
+
     elements.push(mlcrough.serialize(top));
 
     // 3. TEXT PLACEMENT
