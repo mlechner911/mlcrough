@@ -2,6 +2,9 @@ import { Config, Options, OpSet, ResolvedOptions, Drawable, SVGRenderer, SVGNode
 import { RoughGenerator } from './generator';
 import { Point } from './geometry';
 
+/**
+ * High-level class for rendering Drawables to SVG nodes or strings.
+ */
 export class RoughSVG<T> {
   private gen: RoughGenerator;
   private renderer: SVGRenderer<T>;
@@ -11,6 +14,10 @@ export class RoughSVG<T> {
     this.gen = new RoughGenerator(config);
   }
 
+  /**
+   * Renders a Drawable object using the current renderer.
+   * @param drawable The Drawable object to render.
+   */
   draw(drawable: Drawable): T {
     const sets = drawable.sets || [];
     const o = drawable.options || this.getDefaultOptions();
@@ -80,64 +87,85 @@ export class RoughSVG<T> {
     return this.renderer.createElement('path', attrs);
   }
 
+  /**
+   * Returns the underlying RoughGenerator instance.
+   */
   get generator(): RoughGenerator {
     return this.gen;
   }
 
+  /**
+   * Returns default options used by the generator.
+   */
   getDefaultOptions(): ResolvedOptions {
     return this.gen.defaultOptions;
   }
 
+  /**
+   * Converts drawing operations to an SVG path string.
+   */
   opsToPath(drawing: OpSet, fixedDecimalPlaceDigits?: number): string {
     return this.gen.opsToPath(drawing, fixedDecimalPlaceDigits);
   }
 
+  /** Draws a line. */
   line(x1: number, y1: number, x2: number, y2: number, options?: Options): T {
     const d = this.gen.line(x1, y1, x2, y2, options);
     return this.draw(d);
   }
 
+  /** Draws a rectangle. */
   rectangle(x: number, y: number, width: number, height: number, options?: Options): T {
     const d = this.gen.rectangle(x, y, width, height, options);
     return this.draw(d);
   }
 
+  /** Draws an ellipse. */
   ellipse(x: number, y: number, width: number, height: number, options?: Options): T {
     const d = this.gen.ellipse(x, y, width, height, options);
     return this.draw(d);
   }
 
+  /** Draws a circle. */
   circle(x: number, y: number, diameter: number, options?: Options): T {
     const d = this.gen.circle(x, y, diameter, options);
     return this.draw(d);
   }
 
+  /** Draws a linear path. */
   linearPath(points: Point[], options?: Options): T {
     const d = this.gen.linearPath(points, options);
     return this.draw(d);
   }
 
+  /** Draws a polygon. */
   polygon(points: Point[], options?: Options): T {
     const d = this.gen.polygon(points, options);
     return this.draw(d);
   }
 
+  /** Draws an arc. */
   arc(x: number, y: number, width: number, height: number, start: number, stop: number, closed: boolean = false, options?: Options): T {
     const d = this.gen.arc(x, y, width, height, start, stop, closed, options);
     return this.draw(d);
   }
 
+  /** Draws a curve. */
   curve(points: Point[] | Point[][], options?: Options): T {
     const d = this.gen.curve(points, options);
     return this.draw(d);
   }
 
+  /** Draws an SVG path. */
   path(d: string, options?: Options): T {
     const drawing = this.gen.path(d, options);
     return this.draw(drawing);
   }
 }
 
+/**
+ * Implementation of SVGRenderer that generates SVGNode objects.
+ */
 export class StringRenderer implements SVGRenderer<SVGNode> {
   createElement(tag: string, attributes: { [key: string]: string }): SVGNode {
     return { tag, attributes, children: [] };
@@ -150,6 +178,9 @@ export class StringRenderer implements SVGRenderer<SVGNode> {
   }
 }
 
+/**
+ * Serializes an SVGNode to an SVG string.
+ */
 export function serializeSVG(node: SVGNode): string {
   const attrs = Object.keys(node.attributes).map((k) => `${k}="${node.attributes[k]}"`).join(' ');
   const children = node.children.map(serializeSVG).join('');

@@ -19,9 +19,14 @@ const pointsOnPath = pop.pointsOnPath || pop.default?.pointsOnPath;
 
 const NOS = 'none';
 
+/**
+ * The RoughGenerator class provides methods to generate Drawable objects for various shapes.
+ * These Drawables can then be rendered using a RoughRenderer.
+ */
 export class RoughGenerator {
   private config: Config;
 
+  /** Default options for the generator. */
   defaultOptions: ResolvedOptions = {
     maxRandomnessOffset: 2,
     roughness: 1,
@@ -52,6 +57,9 @@ export class RoughGenerator {
     }
   }
 
+  /**
+   * Generates a new random seed.
+   */
   static newSeed(): number {
     return randomSeed();
   }
@@ -64,12 +72,28 @@ export class RoughGenerator {
     return { shape, sets: sets || [], options: options || this.defaultOptions };
   }
 
+  /**
+   * Draws a line between two points.
+   * @param x1 x-coordinate of the first point.
+   * @param y1 y-coordinate of the first point.
+   * @param x2 x-coordinate of the second point.
+   * @param y2 y-coordinate of the second point.
+   * @param options Optional options to customize the line.
+   */
   line(x1: number, y1: number, x2: number, y2: number, options?: Options): Drawable {
     const o = this._o(options);
     const renderer = new RoughRenderer(o);
     return this._d('line', [renderer.line(x1, y1, x2, y2)], o);
   }
 
+  /**
+   * Draws a rectangle.
+   * @param x x-coordinate of the top-left corner.
+   * @param y y-coordinate of the top-left corner.
+   * @param width Width of the rectangle.
+   * @param height Height of the rectangle.
+   * @param options Optional options to customize the rectangle.
+   */
   rectangle(x: number, y: number, width: number, height: number, options?: Options): Drawable {
     const o = this._o(options);
     const renderer = new RoughRenderer(o);
@@ -89,6 +113,14 @@ export class RoughGenerator {
     return this._d('rectangle', paths, o);
   }
 
+  /**
+   * Draws an ellipse.
+   * @param x x-coordinate of the center.
+   * @param y y-coordinate of the center.
+   * @param width Width of the ellipse.
+   * @param height Height of the ellipse.
+   * @param options Optional options to customize the ellipse.
+   */
   ellipse(x: number, y: number, width: number, height: number, options?: Options): Drawable {
     const o = this._o(options);
     const renderer = new RoughRenderer(o);
@@ -110,18 +142,41 @@ export class RoughGenerator {
     return this._d('ellipse', paths, o);
   }
 
+  /**
+   * Draws a circle.
+   * @param x x-coordinate of the center.
+   * @param y y-coordinate of the center.
+   * @param diameter Diameter of the circle.
+   * @param options Optional options to customize the circle.
+   */
   circle(x: number, y: number, diameter: number, options?: Options): Drawable {
     const ret = this.ellipse(x, y, diameter, diameter, options);
     ret.shape = 'circle';
     return ret;
   }
 
+  /**
+   * Draws a linear path defined by a series of points.
+   * @param points Array of points defining the path.
+   * @param options Optional options to customize the path.
+   */
   linearPath(points: Point[], options?: Options): Drawable {
     const o = this._o(options);
     const renderer = new RoughRenderer(o);
     return this._d('linearPath', [renderer.linearPath(points, false)], o);
   }
 
+  /**
+   * Draws an arc.
+   * @param x x-coordinate of the center.
+   * @param y y-coordinate of the center.
+   * @param width Width of the ellipse the arc is part of.
+   * @param height Height of the ellipse the arc is part of.
+   * @param start Start angle of the arc in radians.
+   * @param stop Stop angle of the arc in radians.
+   * @param closed Whether the arc should be closed.
+   * @param options Optional options to customize the arc.
+   */
   arc(x: number, y: number, width: number, height: number, start: number, stop: number, closed: boolean = false, options?: Options): Drawable {
     const o = this._o(options);
     const renderer = new RoughRenderer(o);
@@ -145,6 +200,11 @@ export class RoughGenerator {
     return this._d('arc', paths, o);
   }
 
+  /**
+   * Draws a curve through a series of points.
+   * @param points Array of points defining the curve.
+   * @param options Optional options to customize the curve.
+   */
   curve(points: Point[] | Point[][], options?: Options): Drawable {
     const o = this._o(options);
     const renderer = new RoughRenderer(o);
@@ -190,6 +250,11 @@ export class RoughGenerator {
     return this._d('curve', paths, o);
   }
 
+  /**
+   * Draws a polygon defined by a series of points.
+   * @param points Array of points defining the polygon.
+   * @param options Optional options to customize the polygon.
+   */
   polygon(points: Point[], options?: Options): Drawable {
     const o = this._o(options);
     const renderer = new RoughRenderer(o);
@@ -208,6 +273,11 @@ export class RoughGenerator {
     return this._d('polygon', paths, o);
   }
 
+  /**
+   * Draws an SVG path.
+   * @param d SVG path data string.
+   * @param options Optional options to customize the path.
+   */
   path(d: string, options?: Options): Drawable {
     const o = this._o(options);
     const renderer = new RoughRenderer(o);
@@ -253,6 +323,11 @@ export class RoughGenerator {
     return this._d('path', paths, o);
   }
 
+  /**
+   * Converts drawing operations to an SVG path string.
+   * @param drawing The OpSet containing the operations.
+   * @param fixedDecimals Optional number of decimal places to keep.
+   */
   opsToPath(drawing: OpSet, fixedDecimals?: number): string {
     let path = '';
     for (const item of drawing.ops) {
@@ -272,6 +347,10 @@ export class RoughGenerator {
     return path.trim();
   }
 
+  /**
+   * Converts a Drawable to an array of PathInfo objects.
+   * @param drawable The Drawable object to convert.
+   */
   toPaths(drawable: Drawable): PathInfo[] {
     const sets = drawable.sets || [];
     const o = drawable.options || this.defaultOptions;

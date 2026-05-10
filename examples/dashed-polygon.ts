@@ -13,7 +13,7 @@ const shape = rc.polygon([
   [100, 50],
   [300, 100],
   [60, 200]
-], { stroke: 'black', strokeWidth: 2, fill: 'red', hachureAngle: 90, fillLineDash: [15, 5], fillLineDashOffset: 10 });
+], { stroke: 'grey', strokeWidth: 2, fill: 'red', hachureAngle: 90, fillLineDash: [15, 5], fillLineDashOffset: 10 });
 
 const svg = `
 <svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
