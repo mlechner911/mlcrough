@@ -7,12 +7,12 @@ tasks:
     silent: true
 
   dev:
-    desc: Start Vite development playground
+    desc: Watch for changes and rebuild the library
     cmds:
       - npm run dev
 
   build:
-    desc: Build the library (ESM, CJS, IIFE)
+    desc: Build the library (ES6 ESM)
     cmds:
       - npm run build
 

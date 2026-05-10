@@ -9,6 +9,7 @@
   },
   "types": "dist/mlcrough.d.ts",
   "scripts": {
+    "dev": "node build.js --watch",
     "build": "rm -rf dist && tsc --emitDeclarationOnly --declarationDir dist --declaration && node build.js",
     "lint": "eslint src",
     "test": "echo \"Error: no test specified\" && exit 1",

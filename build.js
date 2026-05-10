@@ -10,14 +10,22 @@ const baseConfig = {
 };
 
 async function build() {
-  // ESM (ES6) - Single library file
-  await esbuild.build({
+  const watch = process.argv.includes('--watch');
+
+  const context = await esbuild.context({
     ...baseConfig,
     format: 'esm',
     outfile: 'dist/mlcrough.js',
   });
 
-  console.log('Build complete: dist/mlcrough.js');
+  if (watch) {
+    await context.watch();
+    console.log('Watching for changes...');
+  } else {
+    await context.rebuild();
+    await context.dispose();
+    console.log('Build complete: dist/mlcrough.js');
+  }
 }
 
 build().catch(() => process.exit(1));
