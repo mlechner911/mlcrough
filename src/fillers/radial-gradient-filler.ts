@@ -57,6 +57,8 @@ export class RadialGradientFiller implements PatternFiller {
       groupCounts[groupIdx]++;
     });
 
+    const [min, max] = o.opacityRange || [0.1, 1.0];
+
     return groups.map((ops, i): OpSet | null => {
       if (ops.length === 0) return null;
       const avgRelDist = groupDistances[i] / groupCounts[i];
@@ -64,7 +66,7 @@ export class RadialGradientFiller implements PatternFiller {
         type: 'fillSketch',
         ops,
         options: {
-          opacity: Math.max(0.1, 1 - avgRelDist), // Brighter at center, fades at edges
+          opacity: max - (avgRelDist * (max - min)), // Brighter at center (max), fades at edges (min)
         },
       };
     }).filter((res): res is OpSet => res !== null);

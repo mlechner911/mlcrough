@@ -68,6 +68,7 @@ Most drawing methods accept an `options` object as the last parameter.
 | `fill` | `string` | Color to fill the shape with. |
 | `fillStyle` | `string` | Style of the fill: `'hachure'`, `'solid'`, `'zigzag'`, `'cross-hatch'`, `'dots'`, `'dashed'`, `'zigzag-line'`, `'multi-hachure'`, `'gradient'`, `'radial-gradient'`, `'multi-dots'`. |
 | `opacity` | `number` | Transparency level (0.0 to 1.0) for the stroke or fill. |
+| `opacityRange` | `[number, number]` | Range for randomized transparency in multi-styled fills (default vary by style). |
 | `roughness` | `number` | How "messy" the lines are (default: 1). |
 | `bowing` | `number` | How much lines curve (default: 1). |
 | `hachureAngle` | `number` | Angle of hachure lines in degrees. |
@@ -95,6 +96,7 @@ These styles create a more organic, artistic look by randomly distributing hachu
 rc.circle(100, 100, 150, {
   fill: 'blue',
   fillStyle: 'multi-hachure',
+  opacityRange: [0.1, 1.0], // Wide range for dramatic variation
   hachureAngle: 60,
   hachureGap: 4
 });

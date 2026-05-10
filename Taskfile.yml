@@ -39,6 +39,7 @@ tasks:
       - npx tsx examples/multi-style-fill.ts > test-output/multi_style_fill.svg
       - npx tsx examples/gradient-fills.ts > test-output/gradient_fills.svg
       - npx tsx examples/multi-dot-fill.ts > test-output/multi_dot_fill.svg
+      - npx tsx examples/opacity-range.ts > test-output/opacity_range.svg
       - npx tsx bin/generate-test-html.ts
       - echo "Tests completed. Visual dashboard created in test-output/index.html and README.md"
 

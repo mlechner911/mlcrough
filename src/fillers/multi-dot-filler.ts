@@ -23,8 +23,8 @@ export class MultiDotFiller implements PatternFiller {
   }
 
   private dotsOnLines(lines: Line[], o: ResolvedOptions): OpSet[] {
-    const opacities = [0.3, 0.5, 0.7, 0.9];
-    const groups: Op[][] = opacities.map(() => []);
+    const steps = 4;
+    const groups: Op[][] = Array.from({ length: steps }, () => []);
 
     let gap = o.hachureGap;
     if (gap < 0) {
@@ -54,16 +54,19 @@ export class MultiDotFiller implements PatternFiller {
         const el = this.helper.ellipse(cx, cy, fweight, fweight, o);
         
         // Randomly assign to an opacity group
-        const groupIdx = Math.floor(random() * opacities.length);
+        const groupIdx = Math.floor(random() * steps);
         groups[groupIdx].push(...el.ops);
       }
     }
+
+    const [min, max] = o.opacityRange || [0.3, 0.9];
+    const opacitySteps = Array.from({ length: steps }, (_, i) => min + (max - min) * (i / (steps - 1)));
 
     return groups.map((ops, i) => ({
       type: 'fillSketch',
       ops,
       options: {
-        opacity: opacities[i],
+        opacity: opacitySteps[i],
       },
     }));
   }

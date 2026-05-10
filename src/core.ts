@@ -84,6 +84,8 @@ export interface Options {
   fillShapeRoughnessGain?: number;
   /** Optional opacity for the stroke or fill. */
   opacity?: number;
+  /** Optional range [min, max] for randomized opacity in multi-styled fills. */
+  opacityRange?: [number, number];
 }
 
 /**
@@ -112,6 +114,7 @@ export interface ResolvedOptions extends Options {
   preserveVertices: boolean;
   fillShapeRoughnessGain: number;
   opacity?: number;
+  opacityRange?: [number, number];
 }
 
 /** Supported operation types in a path. */

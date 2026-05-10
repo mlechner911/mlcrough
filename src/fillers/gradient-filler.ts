@@ -34,6 +34,8 @@ export class GradientFiller implements PatternFiller {
       groups[groupIdx].push(...this.helper.doubleLineOps(line[0][0], line[0][1], line[1][0], line[1][1], o));
     });
 
+    const [min, max] = o.opacityRange || [0.1, 1.0];
+
     return groups.filter(ops => ops.length > 0).map((ops, i) => {
       // Find the average relative position of this group to determine its opacity
       const rel = i / (groups.length - 1 || 1);
@@ -41,7 +43,7 @@ export class GradientFiller implements PatternFiller {
         type: 'fillSketch',
         ops,
         options: {
-          opacity: Math.max(0.1, 1 - rel), // Fade from 1.0 to 0.1
+          opacity: max - (rel * (max - min)), // Fade from max to min
         },
       };
     });

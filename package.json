@@ -30,7 +30,8 @@
     "example:ridgeplot": "tsx examples/ridgeplot.ts",
     "example:multi-style-fill": "tsx examples/multi-style-fill.ts",
     "example:gradient-fills": "tsx examples/gradient-fills.ts",
-    "example:multi-dot-fill": "tsx examples/multi-dot-fill.ts"
+    "example:multi-dot-fill": "tsx examples/multi-dot-fill.ts",
+    "example:opacity-range": "tsx examples/opacity-range.ts"
   },
   "repository": {
     "type": "git",

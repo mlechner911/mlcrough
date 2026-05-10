@@ -35,6 +35,9 @@ This gallery shows the output of the library across various shapes and complex e
 ## multi_style_fill.svg
 ![multi_style_fill.svg](multi_style_fill.svg)
 
+## opacity_range.svg
+![opacity_range.svg](opacity_range.svg)
+
 ## piechart.svg
 ![piechart.svg](piechart.svg)
 
