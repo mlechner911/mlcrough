@@ -217,7 +217,7 @@ export class MLCRoughGenerator {
         const fillShape = fillRenderer.curve(points);
         paths.push({
           type: 'fillPath',
-          ops: this._mergedShape(fillShape.ops),
+          ops: this._mergedShape(fillShape.ops, true),
         });
       } else {
         const polyPoints: Point[] = [];
@@ -302,7 +302,7 @@ export class MLCRoughGenerator {
           const fillShape = fillRenderer.svgPath(d);
           paths.push({
             type: 'fillPath',
-            ops: this._mergedShape(fillShape.ops),
+            ops: this._mergedShape(fillShape.ops, true),
           });
         } else {
           paths.push(renderer.solidFillPolygon(sets));
@@ -342,6 +342,9 @@ export class MLCRoughGenerator {
           break;
         case 'lineTo':
           path += `L${data[0]} ${data[1]} `;
+          break;
+        case 'close':
+          path += 'Z ';
           break;
       }
     }
@@ -399,8 +402,8 @@ export class MLCRoughGenerator {
     };
   }
 
-  private _mergedShape(input: Op[]): Op[] {
-    return input.filter((d, i) => {
+  private _mergedShape(input: Op[], close = false): Op[] {
+    const ops = input.filter((d, i) => {
       if (i === 0) {
         return true;
       }
@@ -409,5 +412,9 @@ export class MLCRoughGenerator {
       }
       return true;
     });
+    if (close) {
+      ops.push({ op: 'close', data: [] });
+    }
+    return ops;
   }
 }

@@ -115,7 +115,7 @@ export interface ResolvedOptions extends Options {
 }
 
 /** Supported operation types in a path. */
-export declare type OpType = 'move' | 'bcurveTo' | 'lineTo';
+export declare type OpType = 'move' | 'bcurveTo' | 'lineTo' | 'close';
 /** Supported operation set types. */
 export declare type OpSetType = 'path' | 'fillPath' | 'fillSketch';
 

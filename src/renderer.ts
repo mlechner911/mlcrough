@@ -271,6 +271,7 @@ export class MLCRoughRenderer implements RenderHelper {
           for (let i = 1; i < len; i++) {
             ops.push({ op: 'lineTo', data: [points[i][0] + offsetOpt(off, this.ctx), points[i][1] + offsetOpt(off, this.ctx)] });
           }
+          ops.push({ op: 'close', data: [] });
         }
       }
     }
