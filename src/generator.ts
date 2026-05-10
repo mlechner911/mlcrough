@@ -48,7 +48,7 @@ export class MLCRoughGenerator {
     disableMultiStrokeFill: false,
     preserveVertices: false,
     fillShapeRoughnessGain: 0.8,
-    fixedDecimalPlaceDigits: 3
+    fixedDecimalPlaceDigits: 3,
   };
 
   constructor(config?: Config) {

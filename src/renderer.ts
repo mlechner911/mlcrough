@@ -15,6 +15,7 @@ const parsePath = pdp.parsePath || pdp.default?.parsePath;
 const normalize = pdp.normalize || pdp.default?.normalize;
 const absolutize = pdp.absolutize || pdp.default?.absolutize;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function serialize(segments: any[]): string {
   let path = '';
   for (const s of segments) {
@@ -26,7 +27,7 @@ function serialize(segments: any[]): string {
 export function normalizePath(path: string): string {
   try {
     return serialize(normalize(absolutize(parsePath(path))));
-  } catch (e) {
+  } catch {
     return path;
   }
 }
