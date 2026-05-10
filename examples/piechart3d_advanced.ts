@@ -89,14 +89,21 @@ function generate3DPie(data: PieData[], options: PieOptions = {}): string {
     sidePaths.push(`M ${x} ${y} L ${p2.x} ${p2.y} L ${p2.x} ${p2.y + thickness} L ${x} ${y + thickness} Z`);
 
     sidePaths.forEach((path) => {
-      // 1. Opaque Masking (White solid fill)
-      elements.push(mlcrough.serialize(rc.path(path, { fill: 'white', fillStyle: 'solid', stroke: 'none' })));
-      // 2. Visual Shadow/Stroke
+      // 1. Opaque Masking (Bleibt weiß, um Überlagerungen zu verhindern)
       elements.push(mlcrough.serialize(rc.path(path, { 
-        fill: 'rgba(0,0,0,0.15)', 
+        fill: 'white', 
         fillStyle: 'solid', 
-        stroke: '#444', 
-        strokeWidth: 1 
+        stroke: 'none' 
+      })));
+
+      // 2. Farbige Seitenwand statt Einheitsgrau
+      elements.push(mlcrough.serialize(rc.path(path, { 
+        fill: d.color,           // Nutzt die Originalfarbe des Segments
+        fillStyle: 'hachure',    // Optional: Auch hier Schraffur für Konsistenz
+        hachureAngle: 90,        // Vertikale Linien betonen die Höhe
+        hachureGap: 10,          // Etwas luftiger als oben
+        stroke: d.color,         // Kontur in der gleichen Farbe
+        strokeWidth: 0.5 
       })));
     });
 
