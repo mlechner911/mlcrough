@@ -15,6 +15,22 @@ const parsePath = pdp.parsePath || pdp.default?.parsePath;
 const normalize = pdp.normalize || pdp.default?.normalize;
 const absolutize = pdp.absolutize || pdp.default?.absolutize;
 
+function serialize(segments: any[]): string {
+  let path = '';
+  for (const s of segments) {
+    path += `${s.key}${s.data.join(' ')} `;
+  }
+  return path.trim();
+}
+
+export function normalizePath(path: string): string {
+  try {
+    return serialize(normalize(absolutize(parsePath(path))));
+  } catch (e) {
+    return path;
+  }
+}
+
 /**
  * Parameters for an ellipse.
  */

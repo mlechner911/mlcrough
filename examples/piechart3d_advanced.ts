@@ -20,6 +20,12 @@ interface PieOptions {
 /**
  * Advanced 3D Pie Chart implementation using the Painter's Algorithm 
  * to correctly sort slices from back to front.
+ * 
+ * Features:
+ * - Back-to-front rendering (Painter's Algorithm)
+ * - Inner and Outer side walls for realistic depth
+ * - Opaque masking for clean overlaps
+ * - Thicker hachure lines for better visibility
  */
 function generate3DPie(data: PieData[], options: PieOptions = {}): string {
   const {
@@ -51,7 +57,7 @@ function generate3DPie(data: PieData[], options: PieOptions = {}): string {
   });
 
   // Sort segments that are "higher" in the ellipse (back) to the front of the array
-  // so they are drawn first.
+  // so they are drawn first. (sin is negative for the back half in SVG coordinates)
   preparedData.sort((a, b) => Math.sin(a.midAngle) - Math.sin(b.midAngle));
 
   preparedData.forEach((d) => {
@@ -86,7 +92,12 @@ function generate3DPie(data: PieData[], options: PieOptions = {}): string {
       // 1. Opaque Masking (White solid fill)
       elements.push(mlcrough.serialize(rc.path(path, { fill: 'white', fillStyle: 'solid', stroke: 'none' })));
       // 2. Visual Shadow/Stroke
-      elements.push(mlcrough.serialize(rc.path(path, { fill: 'rgba(0,0,0,0.08)', fillStyle: 'solid', stroke: '#666', strokeWidth: 0.5 })));
+      elements.push(mlcrough.serialize(rc.path(path, { 
+        fill: 'rgba(0,0,0,0.15)', 
+        fillStyle: 'solid', 
+        stroke: '#444', 
+        strokeWidth: 1 
+      })));
     });
 
     // --- B. THE TOP LID (Top Face) ---
@@ -99,9 +110,10 @@ function generate3DPie(data: PieData[], options: PieOptions = {}): string {
       fill: d.color,
       fillStyle: 'hachure',
       hachureAngle: 60,
-      hachureGap: 4,
+      hachureGap: 5,
+      fillWeight: 1.5, // Thicker hachure lines
       stroke: '#000',
-      strokeWidth: 1.2,
+      strokeWidth: 1.5,
     })));
 
     // --- C. TEXT LABEL ---
@@ -126,10 +138,10 @@ function generate3DPie(data: PieData[], options: PieOptions = {}): string {
 
 // Example execution:
 const myData: PieData[] = [
-  { label: 'PHP', value: 30, color: '#4F5B93' },
-  { label: 'TypeScript', value: 50, color: '#3178C6', highlight: true },
-  { label: 'Go', value: 20, color: '#00ADD8' },
-  { label: 'Python', value: 40, color: '#3776AB' },
+  { label: 'PHP', value: 30, color: '#e74c3c' },     // Red
+  { label: 'TS', value: 50, color: '#3498db', highlight: true }, // Blue
+  { label: 'Go', value: 20, color: '#2ecc71' },      // Green
+  { label: 'Py', value: 40, color: '#f1c40f' },      // Yellow
 ];
 
 const svgPie3dAdvanced = generate3DPie(myData);

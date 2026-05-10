@@ -1,6 +1,6 @@
 import { Config, Options, Drawable, OpSet, Op, ResolvedOptions, PathInfo, MLCRoughShape } from './core.js';
 import { Point } from './geometry.js';
-import { MLCRoughRenderer } from './renderer.js';
+import { MLCRoughRenderer, normalizePath } from './renderer.js';
 import { randomSeed } from './math.js';
 import * as poc_module from 'points-on-curve';
 import * as poc_bezier_module from 'points-on-curve/lib/curve-to-bezier.js';
@@ -286,7 +286,7 @@ export class MLCRoughGenerator {
     if (!d) {
       return this._d('path', paths, o);
     }
-    d = (d || '').replace(/\n/g, ' ').replace(/(-\s)/g, '-').replace('/(\s\s)/g', ' ');
+    d = normalizePath(d);
 
     const hasFill = o.fill && o.fill !== 'transparent' && o.fill !== NOS;
     const hasStroke = o.stroke !== NOS;
