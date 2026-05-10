@@ -1,17 +1,17 @@
 import { Config, Options, OpSet, ResolvedOptions, Drawable, SVGRenderer, SVGNode } from './core';
-import { RoughGenerator } from './generator';
+import { MLCRoughGenerator } from './generator';
 import { Point } from './geometry';
 
 /**
  * High-level class for rendering Drawables to SVG nodes or strings.
  */
-export class RoughSVG<T> {
-  private gen: RoughGenerator;
+export class MLCRoughSVG<T> {
+  private gen: MLCRoughGenerator;
   private renderer: SVGRenderer<T>;
 
   constructor(renderer: SVGRenderer<T>, config?: Config) {
     this.renderer = renderer;
-    this.gen = new RoughGenerator(config);
+    this.gen = new MLCRoughGenerator(config);
   }
 
   /**
@@ -88,9 +88,9 @@ export class RoughSVG<T> {
   }
 
   /**
-   * Returns the underlying RoughGenerator instance.
+   * Returns the underlying MLCRoughGenerator instance.
    */
-  get generator(): RoughGenerator {
+  get generator(): MLCRoughGenerator {
     return this.gen;
   }
 

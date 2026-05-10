@@ -1,6 +1,6 @@
-import rough from '../src/rough';
+import mlcrough from '../src/mlcrough.js';
 
-const rc = rough.svgString({
+const rc = mlcrough.svgString({
   options: {
     strokeLineDash: [15, 5],
     strokeLineDashOffset: 10
@@ -17,7 +17,7 @@ const shape = rc.polygon([
 
 const svg = `
 <svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
-  ${rough.serialize(shape)}
+  ${mlcrough.serialize(shape)}
 </svg>
 `;
 

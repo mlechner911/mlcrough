@@ -7,7 +7,7 @@ import { Random } from './math';
 export const SVGNS = 'http://www.w3.org/2000/svg';
 
 /**
- * Configuration object for RoughJS.
+ * Configuration object for MLCRough.
  */
 export interface Config {
   /** Optional default options for all drawing operations. */
@@ -22,7 +22,7 @@ export type FillStyle = 'hachure' | 'solid' | 'zigzag' | 'cross-hatch' | 'dots' 
 /**
  * Supported geometric shapes.
  */
-export type RoughShape = 'line' | 'rectangle' | 'ellipse' | 'circle' | 'linearPath' | 'polygon' | 'arc' | 'curve' | 'path';
+export type MLCRoughShape = 'line' | 'rectangle' | 'ellipse' | 'circle' | 'linearPath' | 'polygon' | 'arc' | 'curve' | 'path';
 
 /**
  * Options to customize the appearance of a shape.
@@ -145,7 +145,7 @@ export interface OpSet {
  */
 export interface Drawable {
   /** Type of the shape. */
-  shape: RoughShape;
+  shape: MLCRoughShape;
   /** Resolved options used for drawing. */
   options: ResolvedOptions;
   /** Array of operation sets. */

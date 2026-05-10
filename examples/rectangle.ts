@@ -1,6 +1,6 @@
-import rough from '../src/rough';
+import mlcrough from '../src/mlcrough.js';
 
-const rc = rough.svgString();
+const rc = mlcrough.svgString();
 const shapes = [];
 
 shapes.push(rc.rectangle(10, 10, 80, 80));
@@ -18,7 +18,7 @@ shapes.push(rc.rectangle(10, 210, 480, 280, { fill: 'red', fillStyle: 'dots', ha
 
 const svg = `
 <svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
-  ${shapes.map(s => rough.serialize(s)).join('')}
+  ${shapes.map(s => mlcrough.serialize(s)).join('')}
 </svg>
 `;
 

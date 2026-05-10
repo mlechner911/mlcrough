@@ -1,6 +1,6 @@
-import { Config, Options, Drawable, OpSet, Op, ResolvedOptions, PathInfo, RoughShape } from './core.js';
+import { Config, Options, Drawable, OpSet, Op, ResolvedOptions, PathInfo, MLCRoughShape } from './core.js';
 import { Point } from './geometry.js';
-import { RoughRenderer } from './renderer.js';
+import { MLCRoughRenderer } from './renderer.js';
 import { randomSeed } from './math.js';
 import * as poc_module from 'points-on-curve';
 import * as poc_bezier_module from 'points-on-curve/lib/curve-to-bezier.js';
@@ -20,10 +20,10 @@ const pointsOnPath = pop.pointsOnPath || pop.default?.pointsOnPath;
 const NOS = 'none';
 
 /**
- * The RoughGenerator class provides methods to generate Drawable objects for various shapes.
- * These Drawables can then be rendered using a RoughRenderer.
+ * The MLCRoughGenerator class provides methods to generate Drawable objects for various shapes.
+ * These Drawables can then be rendered using a MLCRoughRenderer.
  */
-export class RoughGenerator {
+export class MLCRoughGenerator {
   private config: Config;
 
   /** Default options for the generator. */
@@ -68,7 +68,7 @@ export class RoughGenerator {
     return options ? Object.assign({}, this.defaultOptions, options) : this.defaultOptions;
   }
 
-  private _d(shape: RoughShape, sets: OpSet[], options: ResolvedOptions): Drawable {
+  private _d(shape: MLCRoughShape, sets: OpSet[], options: ResolvedOptions): Drawable {
     return { shape, sets: sets || [], options: options || this.defaultOptions };
   }
 
@@ -82,7 +82,7 @@ export class RoughGenerator {
    */
   line(x1: number, y1: number, x2: number, y2: number, options?: Options): Drawable {
     const o = this._o(options);
-    const renderer = new RoughRenderer(o);
+    const renderer = new MLCRoughRenderer(o);
     return this._d('line', [renderer.line(x1, y1, x2, y2)], o);
   }
 
@@ -96,7 +96,7 @@ export class RoughGenerator {
    */
   rectangle(x: number, y: number, width: number, height: number, options?: Options): Drawable {
     const o = this._o(options);
-    const renderer = new RoughRenderer(o);
+    const renderer = new MLCRoughRenderer(o);
     const paths = [];
     const outline = renderer.rectangle(x, y, width, height);
     if (o.fill) {
@@ -123,7 +123,7 @@ export class RoughGenerator {
    */
   ellipse(x: number, y: number, width: number, height: number, options?: Options): Drawable {
     const o = this._o(options);
-    const renderer = new RoughRenderer(o);
+    const renderer = new MLCRoughRenderer(o);
     const paths: OpSet[] = [];
     const ellipseParams = renderer.generateEllipseParams(width, height);
     const ellipseResponse = renderer.ellipseWithParams(x, y, ellipseParams);
@@ -162,7 +162,7 @@ export class RoughGenerator {
    */
   linearPath(points: Point[], options?: Options): Drawable {
     const o = this._o(options);
-    const renderer = new RoughRenderer(o);
+    const renderer = new MLCRoughRenderer(o);
     return this._d('linearPath', [renderer.linearPath(points, false)], o);
   }
 
@@ -179,14 +179,14 @@ export class RoughGenerator {
    */
   arc(x: number, y: number, width: number, height: number, start: number, stop: number, closed: boolean = false, options?: Options): Drawable {
     const o = this._o(options);
-    const renderer = new RoughRenderer(o);
+    const renderer = new MLCRoughRenderer(o);
     const paths = [];
     const outline = renderer.arc(x, y, width, height, start, stop, closed, true);
     if (closed && o.fill) {
       if (o.fillStyle === 'solid') {
         const fillOptions: ResolvedOptions = { ...o };
         fillOptions.disableMultiStroke = true;
-        const fillRenderer = new RoughRenderer(fillOptions);
+        const fillRenderer = new MLCRoughRenderer(fillOptions);
         const shape = fillRenderer.arc(x, y, width, height, start, stop, true, false);
         shape.type = 'fillPath';
         paths.push(shape);
@@ -207,12 +207,12 @@ export class RoughGenerator {
    */
   curve(points: Point[] | Point[][], options?: Options): Drawable {
     const o = this._o(options);
-    const renderer = new RoughRenderer(o);
+    const renderer = new MLCRoughRenderer(o);
     const paths: OpSet[] = [];
     const outline = renderer.curve(points);
     if (o.fill && o.fill !== NOS) {
       if (o.fillStyle === 'solid') {
-        const fillRenderer = new RoughRenderer({ ...o, disableMultiStroke: true, roughness: o.roughness ? (o.roughness + o.fillShapeRoughnessGain) : 0 });
+        const fillRenderer = new MLCRoughRenderer({ ...o, disableMultiStroke: true, roughness: o.roughness ? (o.roughness + o.fillShapeRoughnessGain) : 0 });
         const fillShape = fillRenderer.curve(points);
         paths.push({
           type: 'fillPath',
@@ -257,7 +257,7 @@ export class RoughGenerator {
    */
   polygon(points: Point[], options?: Options): Drawable {
     const o = this._o(options);
-    const renderer = new RoughRenderer(o);
+    const renderer = new MLCRoughRenderer(o);
     const paths: OpSet[] = [];
     const outline = renderer.linearPath(points, true);
     if (o.fill) {
@@ -280,7 +280,7 @@ export class RoughGenerator {
    */
   path(d: string, options?: Options): Drawable {
     const o = this._o(options);
-    const renderer = new RoughRenderer(o);
+    const renderer = new MLCRoughRenderer(o);
     const paths: OpSet[] = [];
     if (!d) {
       return this._d('path', paths, o);
@@ -297,7 +297,7 @@ export class RoughGenerator {
     if (hasFill) {
       if (o.fillStyle === 'solid') {
         if (sets.length === 1) {
-          const fillRenderer = new RoughRenderer({ ...o, disableMultiStroke: true, roughness: o.roughness ? (o.roughness + o.fillShapeRoughnessGain) : 0 });
+          const fillRenderer = new MLCRoughRenderer({ ...o, disableMultiStroke: true, roughness: o.roughness ? (o.roughness + o.fillShapeRoughnessGain) : 0 });
           const fillShape = fillRenderer.svgPath(d);
           paths.push({
             type: 'fillPath',

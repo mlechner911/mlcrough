@@ -1,7 +1,7 @@
-import rough from '../src/rough';
-import { serializeSVG } from '../src/svg';
+import mlcrough from '../src/mlcrough.js';
+import { serializeSVG } from '../src/svg.js';
 
-const rc = rough.svgString();
+const rc = mlcrough.svgString();
 const node = rc.circle(150, 150, 200, {
   fill: 'blue',
   stroke: 'black',

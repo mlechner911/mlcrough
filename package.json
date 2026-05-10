@@ -1,13 +1,13 @@
 {
-  "name": "roughjs",
+  "name": "mlcrough",
   "version": "4.6.6",
   "description": "Create graphics using SVG with a hand-drawn, sketchy, appearance.",
   "type": "module",
-  "main": "dist/rough.js",
+  "main": "dist/mlcrough.js",
   "exports": {
-    ".": "./dist/rough.js"
+    ".": "./dist/mlcrough.js"
   },
-  "types": "dist/rough.d.ts",
+  "types": "dist/mlcrough.d.ts",
   "scripts": {
     "build": "rm -rf dist && tsc --emitDeclarationOnly --declarationDir dist --declaration && node build.js",
     "lint": "eslint src",

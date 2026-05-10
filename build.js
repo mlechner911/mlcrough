@@ -1,7 +1,7 @@
 import * as esbuild from 'esbuild';
 
 const baseConfig = {
-  entryPoints: ['src/rough.ts'],
+  entryPoints: ['src/mlcrough.ts'],
   bundle: true,
   minify: true,
   sourcemap: true,
@@ -14,10 +14,10 @@ async function build() {
   await esbuild.build({
     ...baseConfig,
     format: 'esm',
-    outfile: 'dist/rough.js',
+    outfile: 'dist/mlcrough.js',
   });
 
-  console.log('Build complete: dist/rough.js');
+  console.log('Build complete: dist/mlcrough.js');
 }
 
 build().catch(() => process.exit(1));

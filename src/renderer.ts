@@ -33,9 +33,9 @@ export interface EllipseResult {
 }
 
 /**
- * The RoughRenderer class handles the low-level drawing of shapes using hand-drawn style algorithms.
+ * The MLCRoughRenderer class handles the low-level drawing of shapes using hand-drawn style algorithms.
  */
-export class RoughRenderer implements RenderHelper {
+export class MLCRoughRenderer implements RenderHelper {
   private ctx: GeometricContext;
 
   constructor(o: ResolvedOptions) {
