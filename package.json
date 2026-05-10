@@ -1,6 +1,6 @@
 {
   "name": "mlcrough",
-  "version": "4.6.6",
+  "version": "5.0.0",
   "description": "Create graphics using SVG with a hand-drawn, sketchy, appearance.",
   "type": "module",
   "main": "dist/mlcrough.js",
