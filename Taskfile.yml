@@ -34,6 +34,7 @@ tasks:
       - npx tsx examples/barchart.ts > test-output/barchart.svg
       - npx tsx examples/piechart.ts > test-output/piechart.svg
       - npx tsx examples/piechart3d.ts > test-output/piechart3d.svg
+      - npx tsx examples/piechart3d_advanced.ts > test-output/piechart3d_advanced.svg
       - echo "Tests completed. All SVGs are in 'test-output/' directory."
 
   lint:
