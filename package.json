@@ -3,12 +3,14 @@
   "version": "4.6.6",
   "description": "Create graphics using SVG with a hand-drawn, sketchy, appearance.",
   "type": "module",
-  "main": "bundled/rough.cjs.js",
-  "module": "bundled/rough.esm.js",
-  "types": "bin/rough.d.ts",
+  "main": "dist/rough.js",
+  "exports": {
+    ".": "./dist/rough.js"
+  },
+  "types": "dist/rough.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "rm -rf bin && tsc && node build.js",
+    "build": "rm -rf dist && tsc --emitDeclarationOnly --declarationDir dist --declaration && node build.js",
     "lint": "eslint src",
     "test": "echo \"Error: no test specified\" && exit 1",
     "example:rectangle": "tsx examples/rectangle.ts",

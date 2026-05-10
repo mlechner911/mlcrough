@@ -41,4 +41,4 @@ tasks:
   clean:
     desc: Remove build artifacts and test output
     cmds:
-      - rm -rf bin bundled test-output
+      - rm -rf dist test-output

@@ -2,8 +2,6 @@
 .DS_Store
 node_modules
 z
-bin
 dist
-bundled
 bug.html
 test-output/
