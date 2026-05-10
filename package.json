@@ -24,7 +24,8 @@
     "example:dashed-polygon": "tsx examples/dashed-polygon.ts",
     "example:dashed-ellipse": "tsx examples/dashed-ellipse.ts",
     "example:barchart": "tsx examples/barchart.ts",
-    "example:piechart": "tsx examples/piechart.ts"
+    "example:piechart": "tsx examples/piechart.ts",
+    "example:piechart3d": "tsx examples/piechart3d.ts"
   },
   "repository": {
     "type": "git",
