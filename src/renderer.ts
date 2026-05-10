@@ -280,14 +280,15 @@ export class MLCRoughRenderer implements RenderHelper {
   /**
    * Generates operations for a pattern fill polygon.
    */
-  patternFillPolygons(polygonList: Point[][]): OpSet {
-    return getFiller(this.ctx.options, this).fillPolygons(polygonList, this.ctx.options);
+  patternFillPolygons(polygonList: Point[][]): OpSet[] {
+    const res = getFiller(this.ctx.options, this).fillPolygons(polygonList, this.ctx.options);
+    return Array.isArray(res) ? res : [res];
   }
 
   /**
    * Generates operations for a pattern fill arc.
    */
-  patternFillArc(x: number, y: number, width: number, height: number, start: number, stop: number): OpSet {
+  patternFillArc(x: number, y: number, width: number, height: number, start: number, stop: number): OpSet[] {
     const cx = x;
     const cy = y;
     let rx = Math.abs(width / 2);

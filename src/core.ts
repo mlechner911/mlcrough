@@ -17,7 +17,7 @@ export interface Config {
 /**
  * Supported fill styles for shapes.
  */
-export type FillStyle = 'hachure' | 'solid' | 'zigzag' | 'cross-hatch' | 'dots' | 'dashed' | 'zigzag-line';
+export type FillStyle = 'hachure' | 'solid' | 'zigzag' | 'cross-hatch' | 'dots' | 'dashed' | 'zigzag-line' | 'multi-hachure';
 
 /**
  * Supported geometric shapes.
@@ -82,6 +82,8 @@ export interface Options {
   fixedDecimalPlaceDigits?: number;
   /** Gain for roughness when filling a shape. */
   fillShapeRoughnessGain?: number;
+  /** Optional opacity for the stroke or fill. */
+  opacity?: number;
 }
 
 /**
@@ -109,6 +111,7 @@ export interface ResolvedOptions extends Options {
   disableMultiStrokeFill: boolean;
   preserveVertices: boolean;
   fillShapeRoughnessGain: number;
+  opacity?: number;
 }
 
 /** Supported operation types in a path. */
@@ -138,6 +141,8 @@ export interface OpSet {
   size?: Point;
   /** Optional SVG path string. */
   path?: string;
+  /** Optional local style overrides for this set. */
+  options?: Options;
 }
 
 /**

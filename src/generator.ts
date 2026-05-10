@@ -105,7 +105,7 @@ export class MLCRoughGenerator {
       if (o.fillStyle === 'solid') {
         paths.push(renderer.solidFillPolygon([points]));
       } else {
-        paths.push(renderer.patternFillPolygons([points]));
+        paths.push(...renderer.patternFillPolygons([points]));
       }
     }
     if (o.stroke !== NOS) {
@@ -134,7 +134,7 @@ export class MLCRoughGenerator {
         shape.type = 'fillPath';
         paths.push(shape);
       } else {
-        paths.push(renderer.patternFillPolygons([ellipseResponse.estimatedPoints]));
+        paths.push(...renderer.patternFillPolygons([ellipseResponse.estimatedPoints]));
       }
     }
     if (o.stroke !== NOS) {
@@ -192,7 +192,7 @@ export class MLCRoughGenerator {
         shape.type = 'fillPath';
         paths.push(shape);
       } else {
-        paths.push(renderer.patternFillArc(x, y, width, height, start, stop));
+        paths.push(...renderer.patternFillArc(x, y, width, height, start, stop));
       }
     }
     if (o.stroke !== NOS) {
@@ -241,7 +241,7 @@ export class MLCRoughGenerator {
           }
         }
         if (polyPoints.length) {
-          paths.push(renderer.patternFillPolygons([polyPoints]));
+          paths.push(...renderer.patternFillPolygons([polyPoints]));
         }
       }
     }
@@ -265,7 +265,7 @@ export class MLCRoughGenerator {
       if (o.fillStyle === 'solid') {
         paths.push(renderer.solidFillPolygon([points]));
       } else {
-        paths.push(renderer.patternFillPolygons([points]));
+        paths.push(...renderer.patternFillPolygons([points]));
       }
     }
     if (o.stroke !== NOS) {
@@ -308,7 +308,7 @@ export class MLCRoughGenerator {
           paths.push(renderer.solidFillPolygon(sets));
         }
       } else {
-        paths.push(renderer.patternFillPolygons(sets));
+        paths.push(...renderer.patternFillPolygons(sets));
       }
     }
     if (hasStroke) {

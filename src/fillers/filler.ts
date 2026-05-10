@@ -6,6 +6,7 @@ import { HatchFiller } from './hatch-filler';
 import { DotFiller } from './dot-filler';
 import { DashedFiller } from './dashed-filler';
 import { ZigZagLineFiller } from './zigzag-line-filler';
+import { MultiHachureFiller } from './multi-hachure-filler';
 
 const fillers: Partial<Record<FillStyle, PatternFiller>> = {};
 
@@ -27,6 +28,9 @@ export function getFiller(o: ResolvedOptions, helper: RenderHelper): PatternFill
         break;
       case 'zigzag-line':
         fillers[fillerName] = new ZigZagLineFiller(helper);
+        break;
+      case 'multi-hachure':
+        fillers[fillerName] = new MultiHachureFiller(helper);
         break;
       case 'solid':
       case 'hachure':

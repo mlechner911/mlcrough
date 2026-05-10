@@ -2,7 +2,7 @@ import { ResolvedOptions, OpSet, Op } from '../core';
 import { Point } from '../geometry';
 
 export interface PatternFiller {
-  fillPolygons(polygonList: Point[][], o: ResolvedOptions): OpSet;
+  fillPolygons(polygonList: Point[][], o: ResolvedOptions): OpSet | OpSet[];
 }
 
 export interface RenderHelper {

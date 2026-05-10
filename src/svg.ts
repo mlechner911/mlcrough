@@ -24,20 +24,24 @@ export class MLCRoughSVG<T> {
     const g = this.renderer.createGroup();
     const precision = drawable.options.fixedDecimalPlaceDigits;
     for (const drawing of sets) {
+      const opOptions = drawing.options ? Object.assign({}, o, drawing.options) : o;
       let path = null;
       switch (drawing.type) {
         case 'path': {
           const attrs: { [key: string]: string } = {
             d: this.opsToPath(drawing, precision),
-            stroke: o.stroke,
-            'stroke-width': o.strokeWidth + '',
+            stroke: opOptions.stroke,
+            'stroke-width': opOptions.strokeWidth + '',
             fill: 'none',
           };
-          if (o.strokeLineDash) {
-            attrs['stroke-dasharray'] = o.strokeLineDash.join(' ').trim();
+          if (opOptions.strokeLineDash) {
+            attrs['stroke-dasharray'] = opOptions.strokeLineDash.join(' ').trim();
           }
-          if (o.strokeLineDashOffset) {
-            attrs['stroke-dashoffset'] = String(o.strokeLineDashOffset);
+          if (opOptions.strokeLineDashOffset) {
+            attrs['stroke-dashoffset'] = String(opOptions.strokeLineDashOffset);
+          }
+          if (opOptions.opacity !== undefined) {
+            attrs['stroke-opacity'] = String(opOptions.opacity);
           }
           path = this.renderer.createElement('path', attrs);
           break;
@@ -47,16 +51,19 @@ export class MLCRoughSVG<T> {
             d: this.opsToPath(drawing, precision),
             stroke: 'none',
             'stroke-width': '0',
-            fill: o.fill || '',
+            fill: opOptions.fill || '',
           };
           if (drawable.shape === 'curve' || drawable.shape === 'polygon') {
             attrs['fill-rule'] = 'evenodd';
+          }
+          if (opOptions.opacity !== undefined) {
+            attrs['fill-opacity'] = String(opOptions.opacity);
           }
           path = this.renderer.createElement('path', attrs);
           break;
         }
         case 'fillSketch': {
-          path = this.fillSketch(drawing, o);
+          path = this.fillSketch(drawing, opOptions);
           break;
         }
       }
@@ -83,6 +90,9 @@ export class MLCRoughSVG<T> {
     }
     if (o.fillLineDashOffset) {
       attrs['stroke-dashoffset'] = String(o.fillLineDashOffset);
+    }
+    if (o.opacity !== undefined) {
+      attrs['stroke-opacity'] = String(o.opacity);
     }
     return this.renderer.createElement('path', attrs);
   }
