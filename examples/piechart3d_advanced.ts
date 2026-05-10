@@ -96,14 +96,21 @@ function generate3DPie(data: PieData[], options: PieOptions = {}): string {
         stroke: 'none' 
       })));
 
-      // 2. Farbige Seitenwand statt Einheitsgrau
+      // 2. Klassischer grauer Schatten für die Grundtiefe
       elements.push(mlcrough.serialize(rc.path(path, { 
-        fill: d.color,           // Nutzt die Originalfarbe des Segments
-        fillStyle: 'hachure',    // Optional: Auch hier Schraffur für Konsistenz
-        hachureAngle: 90,        // Vertikale Linien betonen die Höhe
-        hachureGap: 10,          // Etwas luftiger als oben
-        stroke: d.color,         // Kontur in der gleichen Farbe
+        fill: 'rgba(0,0,0,0.1)', 
+        fillStyle: 'solid', 
+        stroke: '#666', 
         strokeWidth: 0.5 
+      })));
+
+      // 3. Farbige Akzent-Schraffur (vertikale Linien in Segmentfarbe)
+      elements.push(mlcrough.serialize(rc.path(path, { 
+        fill: d.color,
+        fillStyle: 'hachure',
+        hachureAngle: 90,
+        hachureGap: 10,
+        stroke: 'none' 
       })));
     });
 
