@@ -49,5 +49,5 @@ This gallery shows the output of the library across various shapes and complex e
 ${files.map(f => `## ${f}\n![${f}](${f})\n`).join('\n')}
 `;
 
-fs.writeFileSync(path.join(outputDir, 'index.md'), md.trim());
-console.log('Markdown gallery generated: test-output/index.md');
+fs.writeFileSync(path.join(outputDir, 'README.md'), md.trim());
+console.log('Markdown gallery generated: test-output/README.md');
