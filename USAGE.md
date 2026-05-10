@@ -66,7 +66,8 @@ Most drawing methods accept an `options` object as the last parameter.
 | `stroke` | `string` | Color of the line (e.g., '#000', 'red'). |
 | `strokeWidth` | `number` | Thickness of the line. |
 | `fill` | `string` | Color to fill the shape with. |
-| `fillStyle` | `string` | Style of the fill: `'hachure'`, `'solid'`, `'zigzag'`, `'cross-hatch'`, `'dots'`, `'dashed'`, `'zigzag-line'`. |
+| `fillStyle` | `string` | Style of the fill: `'hachure'`, `'solid'`, `'zigzag'`, `'cross-hatch'`, `'dots'`, `'dashed'`, `'zigzag-line'`, `'multi-hachure'`. |
+| `opacity` | `number` | Transparency level (0.0 to 1.0) for the stroke or fill. |
 | `roughness` | `number` | How "messy" the lines are (default: 1). |
 | `bowing` | `number` | How much lines curve (default: 1). |
 | `hachureAngle` | `number` | Angle of hachure lines in degrees. |
@@ -83,6 +84,19 @@ You can use standard SVG path data strings. MLCRough will automatically normaliz
 ```javascript
 const pathData = "M 10 10 L 100 10 A 50 50 0 0 1 100 100 Z";
 const customShape = rc.path(pathData, { fill: 'purple', fillStyle: 'dots' });
+```
+
+### Advanced Shading: Multi-Hachure
+
+The `multi-hachure` style creates a more organic, artistic look by randomly distributing lines with four different opacity levels (`0.4`, `0.5`, `0.6`, `0.9`). This produces a hand-shaded effect that looks less mechanical than standard hachure.
+
+```javascript
+rc.circle(100, 100, 150, {
+  fill: 'blue',
+  fillStyle: 'multi-hachure',
+  hachureAngle: 60,
+  hachureGap: 4
+});
 ```
 
 ### Generating 3D Effects
