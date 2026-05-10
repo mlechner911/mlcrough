@@ -47,27 +47,31 @@ function generate3DAreaChart(datasets: SeriesData[], options: RidgeOptions = {})
       points.push([offX + i * stepX, baseline - v]);
     });
 
-    // --- A. SIDE WALLS (Top edge for 3D thickness) ---
+    // --- A. THE VOLUMETRIC RIDGE CAP (Top surface) ---
     for (let i = 0; i < points.length - 1; i++) {
       const p1 = points[i];
       const p2 = points[i + 1];
       
-      const sidePath = `M ${p1[0]} ${p1[1]} 
-                        L ${p1[0] + thickness} ${p1[1] - thickness * 0.5} 
-                        L ${p2[0] + thickness} ${p2[1] - thickness * 0.5} 
-                        L ${p2[0]} ${p2[1]} Z`;
+      const ridgePath = `M ${p1[0]} ${p1[1]} 
+                         L ${p2[0]} ${p2[1]} 
+                         L ${p2[0] + thickness} ${p2[1] - thickness * 0.5} 
+                         L ${p1[0] + thickness} ${p1[1] - thickness * 0.5} Z`;
       
-      // Masking
-      elements.push(mlcrough.serialize(rc.path(sidePath, {
+      // Masking (Make it opaque)
+      elements.push(mlcrough.serialize(rc.path(ridgePath, {
         fill: 'white', fillStyle: 'solid', stroke: 'none',
       })));
-      // Visual side wall
-      elements.push(mlcrough.serialize(rc.path(sidePath, {
-        fill: series.color, fillStyle: 'solid', stroke: '#333', strokeWidth: 0.5,
+      // Top surface shadow/accent
+      elements.push(mlcrough.serialize(rc.path(ridgePath, {
+        fill: series.color, 
+        fillStyle: 'solid', 
+        opacity: 0.4, 
+        stroke: '#333', 
+        strokeWidth: 0.5,
       })));
     }
 
-    // --- B. FRONT FACE (The "Mountain") ---
+    // --- B. THE FRONT FACE (The "Mountain Body") ---
     const frontPath = `M ${points[0][0]} ${baseline} ` + 
                       points.map((p) => `L ${p[0]} ${p[1]}`).join(' ') + 
                       ` L ${points[points.length - 1][0]} ${baseline} Z`;
@@ -80,7 +84,7 @@ function generate3DAreaChart(datasets: SeriesData[], options: RidgeOptions = {})
       fill: series.color,
       fillStyle: 'hachure',
       hachureAngle: 60 + (sIndex * 15),
-      hachureGap: 5,
+      hachureGap: 4 + (layerIdx * 0.5), // Back layers are slightly denser
       stroke: '#000',
       strokeWidth: 1.5,
     })));
