@@ -23,6 +23,9 @@ This gallery shows the output of the library across various shapes and complex e
 ## ellipse.svg
 ![ellipse.svg](ellipse.svg)
 
+## gradient_fills.svg
+![gradient_fills.svg](gradient_fills.svg)
+
 ## line.svg
 ![line.svg](line.svg)
 

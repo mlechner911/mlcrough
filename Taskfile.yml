@@ -37,6 +37,7 @@ tasks:
       - npx tsx examples/piechart3d_advanced.ts > test-output/piechart3d_advanced.svg
       - npx tsx examples/ridgeplot.ts > test-output/ridgeplot.svg
       - npx tsx examples/multi-style-fill.ts > test-output/multi_style_fill.svg
+      - npx tsx examples/gradient-fills.ts > test-output/gradient_fills.svg
       - npx tsx bin/generate-test-html.ts
       - echo "Tests completed. Visual dashboard created in test-output/index.html and README.md"
 

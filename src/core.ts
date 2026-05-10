@@ -17,7 +17,7 @@ export interface Config {
 /**
  * Supported fill styles for shapes.
  */
-export type FillStyle = 'hachure' | 'solid' | 'zigzag' | 'cross-hatch' | 'dots' | 'dashed' | 'zigzag-line' | 'multi-hachure';
+export type FillStyle = 'hachure' | 'solid' | 'zigzag' | 'cross-hatch' | 'dots' | 'dashed' | 'zigzag-line' | 'multi-hachure' | 'gradient' | 'radial-gradient';
 
 /**
  * Supported geometric shapes.
