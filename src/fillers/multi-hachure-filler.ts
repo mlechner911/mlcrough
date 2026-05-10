@@ -13,6 +13,9 @@ export class MultiHachureFiller implements PatternFiller {
     this.helper = helper;
   }
 
+  /**
+   * Fills polygons with multi-tone hachure lines.
+   */
   fillPolygons(polygonList: Point[][], o: ResolvedOptions): OpSet[] {
     const lines = polygonHachureLines(polygonList, o);
 

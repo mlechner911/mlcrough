@@ -24,6 +24,8 @@ Or get the latest using unpkg: `https://unpkg.com/mlcrough@latest/dist/mlcrough.
 
 MLCRough generates abstract SVG nodes that can be easily serialized to a string.
 
+See the [Usage Guide](USAGE.md) for detailed instructions and styling options.
+
 ```js
 import mlcrough from 'mlcrough';
 

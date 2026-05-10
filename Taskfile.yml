@@ -38,7 +38,7 @@ tasks:
       - npx tsx examples/ridgeplot.ts > test-output/ridgeplot.svg
       - npx tsx examples/multi-style-fill.ts > test-output/multi_style_fill.svg
       - npx tsx bin/generate-test-html.ts
-      - echo "Tests completed. Visual dashboard created in test-output/index.html"
+      - echo "Tests completed. Visual dashboard created in test-output/index.html and index.md"
 
   lint:
     desc: Run ESLint

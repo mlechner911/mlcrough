@@ -5,8 +5,9 @@ const outputDir = 'test-output';
 if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir);
 }
-const files = fs.readdirSync(outputDir).filter(f => f.endsWith('.svg'));
+const files = fs.readdirSync(outputDir).filter(f => f.endsWith('.svg')).sort();
 
+// 1. Generate HTML Dashboard
 const html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -37,5 +38,16 @@ const html = `
 </html>
 `;
 
-fs.writeFileSync('test-output/index.html', html.trim());
+fs.writeFileSync(path.join(outputDir, 'index.html'), html.trim());
 console.log('Test dashboard generated: test-output/index.html');
+
+// 2. Generate Markdown Gallery
+const md = `# MLCRough Visual Gallery
+
+This gallery shows the output of the library across various shapes and complex examples. All these SVGs were generated using the \`svgString\` renderer in a DOM-independent environment.
+
+${files.map(f => `## ${f}\n![${f}](${f})\n`).join('\n')}
+`;
+
+fs.writeFileSync(path.join(outputDir, 'index.md'), md.trim());
+console.log('Markdown gallery generated: test-output/index.md');
