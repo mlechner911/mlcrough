@@ -78,6 +78,21 @@ function create3DBarChart(data: ChartData[], options: ChartOptions = {}): string
     // --- D. LABEL (Text-Placeholder) ---
     // Note: MLCRough does not handle text, so we use standard SVG text tags.
     elements.push(`<text x="${x + barWidth / 2}" y="${baseline + 20}" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333">${d.label}</text>`);
+
+    // --- E. VALUE LABEL (Above the lid) ---
+    const labelX = x + (barWidth / 2) + (depth / 2);
+    const labelY = y - depth - 8;
+    elements.push(`
+  <text 
+    x="${labelX}" 
+    y="${labelY}" 
+    text-anchor="middle" 
+    font-family="cursive, sans-serif" 
+    font-weight="bold" 
+    font-size="14"
+    fill="#333">
+    ${d.value}
+  </text>`);
   });
 
   return `
