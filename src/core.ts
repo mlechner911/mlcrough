@@ -7,11 +7,6 @@ export interface Config {
   options?: Options;
 }
 
-export interface DrawingSurface {
-  width: number | SVGAnimatedLength;
-  height: number | SVGAnimatedLength;
-}
-
 export interface Options {
   maxRandomnessOffset?: number;
   roughness?: number;

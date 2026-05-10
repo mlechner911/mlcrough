@@ -138,27 +138,6 @@ export class RoughSVG<T> {
   }
 }
 
-export class DOMRenderer implements SVGRenderer<SVGElement> {
-  private svg: SVGSVGElement;
-  constructor(svg: SVGSVGElement) {
-    this.svg = svg;
-  }
-  createElement(tag: string, attrs: { [key: string]: string }): SVGElement {
-    const doc = this.svg.ownerDocument || window.document;
-    const el = doc.createElementNS(SVGNS, tag);
-    for (const key in attrs) {
-      el.setAttribute(key, attrs[key]);
-    }
-    return el;
-  }
-  createGroup(): SVGElement {
-    return this.createElement('g', {});
-  }
-  appendChild(parent: SVGElement, child: SVGElement): void {
-    parent.appendChild(child);
-  }
-}
-
 export class StringRenderer implements SVGRenderer<SVGNode> {
   createElement(tag: string, attributes: { [key: string]: string }): SVGNode {
     return { tag, attributes, children: [] };

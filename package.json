@@ -9,7 +9,6 @@
   },
   "types": "dist/rough.d.ts",
   "scripts": {
-    "dev": "vite",
     "build": "rm -rf dist && tsc --emitDeclarationOnly --declarationDir dist --declaration && node build.js",
     "lint": "eslint src",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -50,8 +49,7 @@
     "tslib": "^2.6.0",
     "tsx": "^4.19.0",
     "typescript": "^5.0.0",
-    "typescript-eslint": "^8.59.2",
-    "vite": "^6.0.0"
+    "typescript-eslint": "^8.59.2"
   },
   "dependencies": {
     "hachure-fill": "^0.5.2",
