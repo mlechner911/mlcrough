@@ -1,4 +1,4 @@
-import { Config, Options, OpSet, ResolvedOptions, Drawable, SVGNS, SVGRenderer, SVGNode } from './core';
+import { Config, Options, OpSet, ResolvedOptions, Drawable, SVGRenderer, SVGNode } from './core';
 import { RoughGenerator } from './generator';
 import { Point } from './geometry';
 
