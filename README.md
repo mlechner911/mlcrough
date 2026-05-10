@@ -9,7 +9,7 @@ This project is a modernized fork of the excellent [Rough.js](https://github.com
 - **DOM & Canvas Independent:** All dependencies on the browser-specific DOM and Canvas APIs have been removed. This allows the library to run seamlessly in **Node.js**, Server-Side Rendering (SSR) environments, and other non-browser contexts.
 - **Pure ES6/ESM:** Re-architected as a clean ES6 module for 2026 standards.
 - **Modern TypeScript:** Fully updated to **TypeScript 6.0** with strict typing and improved API ergonomics.
-- **Advanced Textures:** New `multi-hachure` fill style for organic, multi-tone shading with randomized transparency distribution.
+- **Advanced Textures:** New fill styles for artistic shading, including `multi-hachure`, `multi-dots`, and position-based `gradient` and `radial-gradient`.
 - **Refactored Architecture:** Modularized source code with a stateful `MLCRoughRenderer` and specialized shape modules for better maintainability and extensibility.
 
 ## Installation

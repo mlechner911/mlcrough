@@ -86,16 +86,42 @@ const pathData = "M 10 10 L 100 10 A 50 50 0 0 1 100 100 Z";
 const customShape = rc.path(pathData, { fill: 'purple', fillStyle: 'dots' });
 ```
 
-### Advanced Shading: Multi-Hachure
+### Advanced Shading: Multi-Hachure & Multi-Dots
 
-The `multi-hachure` style creates a more organic, artistic look by randomly distributing lines with four different opacity levels (`0.4`, `0.5`, `0.6`, `0.9`). This produces a hand-shaded effect that looks less mechanical than standard hachure.
+These styles create a more organic, artistic look by randomly distributing hachure lines or dots with varying opacity levels.
 
 ```javascript
+// Organic shading with varying line transparency
 rc.circle(100, 100, 150, {
   fill: 'blue',
   fillStyle: 'multi-hachure',
   hachureAngle: 60,
   hachureGap: 4
+});
+
+// Organic dotted pattern with varying dot transparency
+rc.rectangle(50, 50, 200, 200, {
+  fill: 'red',
+  fillStyle: 'multi-dots',
+  hachureGap: 10
+});
+```
+
+### Sketchy Gradients: Linear & Radial
+
+Unlike standard SVG gradients, these styles vary the transparency of individual hachure lines based on their position, providing a "pressure-sensitive" drawing feel.
+
+```javascript
+// Fades from one side to the other based on hachureAngle
+rc.rectangle(10, 10, 100, 300, {
+  fill: 'green',
+  fillStyle: 'gradient'
+});
+
+// Fades from the center outwards
+rc.circle(200, 200, 150, {
+  fill: 'purple',
+  fillStyle: 'radial-gradient'
 });
 ```
 
