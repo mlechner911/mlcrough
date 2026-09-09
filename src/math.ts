@@ -13,7 +13,7 @@ export class Random {
     if (this.seed) {
       return ((2 ** 31 - 1) & (this.seed = Math.imul(48271, this.seed))) / 2 ** 31;
     } else {
-      return Math.random();
+      return Math.random(); // NOSONAR
     }
   }
 }

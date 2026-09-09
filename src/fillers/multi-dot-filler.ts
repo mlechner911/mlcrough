@@ -36,7 +36,7 @@ export class MultiDotFiller implements PatternFiller {
       fweight = o.strokeWidth / 2;
     }
     const ro = gap / 4;
-    
+
     const random = () => o.randomizer ? o.randomizer.next() : Math.random();
 
     for (const line of lines) {
@@ -52,7 +52,7 @@ export class MultiDotFiller implements PatternFiller {
         const cx = (x - ro) + random() * 2 * ro;
         const cy = (y - ro) + random() * 2 * ro;
         const el = this.helper.ellipse(cx, cy, fweight, fweight, o);
-        
+
         // Randomly assign to an opacity group
         const groupIdx = Math.floor(random() * steps);
         groups[groupIdx].push(...el.ops);

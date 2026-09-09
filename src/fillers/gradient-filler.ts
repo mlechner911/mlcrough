@@ -25,18 +25,18 @@ export class GradientFiller implements PatternFiller {
     // We group lines into 10 opacity steps for performance
     const steps = 10;
     const groups: Op[][] = Array.from({ length: steps }, () => []);
-    
+
     lines.forEach((line, i) => {
       // Relative position from 0 to 1
       const rel = i / (lines.length - 1 || 1);
       const groupIdx = Math.min(steps - 1, Math.floor(rel * steps));
-      
+
       groups[groupIdx].push(...this.helper.doubleLineOps(line[0][0], line[0][1], line[1][0], line[1][1], o));
     });
 
     const [min, max] = o.opacityRange || [0.1, 1.0];
 
-    return groups.filter(ops => ops.length > 0).map((ops, i) => {
+    return groups.filter((ops) => ops.length > 0).map((ops, i) => {
       // Find the average relative position of this group to determine its opacity
       const rel = i / (groups.length - 1 || 1);
       return {

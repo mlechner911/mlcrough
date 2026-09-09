@@ -25,8 +25,8 @@ export class RadialGradientFiller implements PatternFiller {
 
     // 1. Calculate bounding box and center
     let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-    polygonList.forEach(poly => {
-      poly.forEach(p => {
+    polygonList.forEach((poly) => {
+      poly.forEach((p) => {
         minX = Math.min(minX, p[0]);
         minY = Math.min(minY, p[1]);
         maxX = Math.max(maxX, p[0]);
@@ -50,7 +50,7 @@ export class RadialGradientFiller implements PatternFiller {
       const my = (line[0][1] + line[1][1]) / 2;
       const dist = Math.sqrt(Math.pow(mx - centerX, 2) + Math.pow(my - centerY, 2));
       const relDist = Math.min(1, dist / maxDist);
-      
+
       const groupIdx = Math.min(steps - 1, Math.floor(relDist * steps));
       groups[groupIdx].push(...this.helper.doubleLineOps(line[0][0], line[0][1], line[1][0], line[1][1], o));
       groupDistances[groupIdx] += relDist;

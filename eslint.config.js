@@ -25,6 +25,12 @@ export default tseslint.config(
       ],
       'eqeqeq': 'error',
       'no-useless-escape': 'off',
+      // Enabled by default in ESLint 10, but it fires on "declare with a
+      // default, then overwrite conditionally" — the shape of nearly every
+      // geometry routine here, and TypeScript rejects dropping the
+      // initializer because the value is only assigned inside a branch.
+      // path-data.ts is additionally kept byte-equivalent to its upstream.
+      'no-useless-assignment': 'off',
       '@typescript-eslint/no-unused-vars': 'error'
     }
   }

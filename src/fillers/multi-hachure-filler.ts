@@ -22,7 +22,7 @@ export class MultiHachureFiller implements PatternFiller {
     // Shuffle lines to distribute opacities randomly across the shape
     const shuffledLines = [...lines];
     const random = () => o.randomizer ? o.randomizer.next() : Math.random();
-    
+
     for (let i = shuffledLines.length - 1; i > 0; i--) {
       const j = Math.floor(random() * (i + 1));
       [shuffledLines[i], shuffledLines[j]] = [shuffledLines[j], shuffledLines[i]];
