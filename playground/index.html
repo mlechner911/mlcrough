@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MLCRough Playground</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --panel: #ffffff;
+    --ink: #1f2937;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --accent: #7c3aed;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font: 14px/1.5 system-ui, -apple-system, 'Segoe UI', sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+  }
+  header {
+    padding: 14px 20px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  header h1 { font-size: 16px; margin: 0; }
+  header span { color: var(--muted); font-size: 13px; }
+  main { display: grid; grid-template-columns: 260px 1fr; gap: 16px; padding: 16px; align-items: start; }
+  .controls, .pane { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
+  .controls { padding: 14px; position: sticky; top: 16px; }
+  .controls h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 10px; }
+  .controls h2:not(:first-child) { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 16px; }
+  label { display: block; margin-bottom: 12px; }
+  label .row { display: flex; justify-content: space-between; align-items: baseline; }
+  label .row b { font-weight: 500; }
+  label .row output { color: var(--muted); font-variant-numeric: tabular-nums; }
+  input[type=range] { width: 100%; margin: 4px 0 0; accent-color: var(--accent); }
+  select, button { width: 100%; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: #fff; font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  button:hover { border-color: var(--accent); color: var(--accent); }
+  .buttons { display: grid; gap: 8px; }
+  label.inline { display: flex; align-items: center; gap: 8px; }
+  label.inline span { flex: 1; }
+  input[type=checkbox] { accent-color: var(--accent); margin: 0; }
+  input[type=color] { width: 34px; height: 24px; padding: 0; border: 1px solid var(--line); border-radius: 4px; background: none; }
+  .panes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .pane header { border: 0; border-bottom: 1px solid var(--line); border-radius: 8px 8px 0 0; padding: 10px 14px; font-size: 13px; justify-content: space-between; }
+  .pane .stage { padding: 14px; overflow: auto; }
+  .pane .stage svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+  /* A document without a viewBox has no intrinsic aspect ratio — ml-time-graph
+     emits width="100%" height="100%" — so the browser cannot compute a height
+     for it. Give those a box to sit in. */
+  .pane .stage svg:not([viewBox]) { height: 360px; width: 100%; }
+  .note { grid-column: 1 / -1; color: var(--muted); font-size: 13px; padding: 0 2px; margin: -4px 0 0; }
+  .drop { outline: 2px dashed var(--accent); outline-offset: -6px; }
+  .error { color: #b91c1c; padding: 14px; white-space: pre-wrap; font-family: ui-monospace, monospace; font-size: 12px; }
+  @media (max-width: 1100px) { main { grid-template-columns: 1fr; } .panes { grid-template-columns: 1fr; } .controls { position: static; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>MLCRough Playground</h1>
+  <span>SVG hineingeben, handgezeichnet herausbekommen — oder eine Datei hierher ziehen.</span>
+</header>
+
+<main>
+  <section class="controls">
+    <h2>Quelle</h2>
+    <label>
+      <select id="sample"></select>
+    </label>
+
+    <h2>Zeichnung</h2>
+    <label>
+      <span class="row"><b>roughness</b><output id="roughness-out"></output></span>
+      <input type="range" id="roughness" min="0" max="4" step="0.1" value="1.4">
+    </label>
+    <label>
+      <span class="row"><b>bowing</b><output id="bowing-out"></output></span>
+      <input type="range" id="bowing" min="0" max="6" step="0.1" value="1">
+    </label>
+    <label>
+      <span class="row"><b>strokeWidth</b><output id="strokeWidth-out"></output></span>
+      <input type="range" id="strokeWidth" min="0" max="6" step="0.5" value="0">
+    </label>
+
+    <h2>Füllung</h2>
+    <label>
+      <select id="fillStyle"></select>
+    </label>
+    <label>
+      <span class="row"><b>hachureGap</b><output id="hachureGap-out"></output></span>
+      <input type="range" id="hachureGap" min="-1" max="24" step="1" value="-1">
+    </label>
+    <label>
+      <span class="row"><b>hachureAngle</b><output id="hachureAngle-out"></output></span>
+      <input type="range" id="hachureAngle" min="-90" max="90" step="1" value="-41">
+    </label>
+    <label>
+      <span class="row"><b>fillWeight</b><output id="fillWeight-out"></output></span>
+      <input type="range" id="fillWeight" min="-1" max="4" step="0.1" value="-1">
+    </label>
+
+    <h2>Beschriftung</h2>
+    <label class="inline">
+      <input type="checkbox" id="textBg" checked>
+      <span>Platte hinter Text</span>
+      <input type="color" id="textBgColor" value="#ffffff">
+    </label>
+
+    <h2>Dokument</h2>
+    <label>
+      <span class="row"><b>padding</b><output id="padding-out"></output></span>
+      <input type="range" id="padding" min="0" max="30" step="1" value="5">
+    </label>
+    <label>
+      <span class="row"><b>seed</b><output id="seed-out"></output></span>
+      <input type="range" id="seed" min="1" max="200" step="1" value="42">
+    </label>
+
+    <div class="buttons">
+      <button id="reseed" type="button">Neu würfeln</button>
+      <button id="download" type="button">SVG herunterladen</button>
+    </div>
+  </section>
+
+  <section class="panes">
+    <p class="note" id="note"></p>
+    <div class="pane">
+      <header><span>Original</span><span id="size-in"></span></header>
+      <div class="stage" id="stage-in"></div>
+    </div>
+    <div class="pane">
+      <header><span>roughen()</span><span id="size-out"></span></header>
+      <div class="stage" id="stage-out"></div>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="./main.ts"></script>
+</body>
+</html>

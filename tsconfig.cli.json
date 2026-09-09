@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "noEmit": true,
+    "declaration": false,
+    "emitDeclarationOnly": false,
+    "isolatedDeclarations": false
+  },
+  "include": ["src/cli.ts"],
+  "exclude": []
+}

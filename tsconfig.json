@@ -3,7 +3,9 @@
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "lib": ["ES2022"],
+    "lib": [
+      "ES2022"
+    ],
     "strict": true,
     "isolatedDeclarations": true,
     "declaration": true,
@@ -16,5 +18,10 @@
     "isolatedModules": true,
     "useDefineForClassFields": true
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "src/cli.ts"
+  ]
 }

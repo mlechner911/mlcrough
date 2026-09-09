@@ -1,0 +1,8 @@
+flowchart TD
+    A["SVG from Mermaid, D3, Graphviz, a chart library"] --> B["parse — untouched bytes kept verbatim"]
+    B --> C["resolve the CSS cascade"]
+    C --> D{"shape element?"}
+    D -->|"rect · circle · path · …"| E["redraw by hand, in place"]
+    D -->|"text · defs · marker"| F["pass through untouched"]
+    E --> G(["hand-drawn SVG"])
+    F --> G

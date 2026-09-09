@@ -58,3 +58,9 @@ This gallery shows the output of the library across various shapes and complex e
 
 ## ridgeplot.svg
 ![ridgeplot.svg](ridgeplot.svg)
+
+## roughen_mermaid.svg
+![roughen_mermaid.svg](roughen_mermaid.svg)
+
+## roughen_timegraph.svg
+![roughen_timegraph.svg](roughen_timegraph.svg)

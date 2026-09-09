@@ -336,6 +336,66 @@ declare class MLCRoughSVG<T> {
 	/** Draws an SVG path. */
 	path(d: string, options?: Options): T;
 }
+/** How the plate behind a label is drawn. See `RoughenOptions.textBackground`. */
+export interface TextBackground {
+	/** Colour of the plate. Defaults to white. */
+	fill?: string;
+	/** Space around the label, in user units. Defaults to 2. */
+	padding?: number;
+	/** Corner radius. Defaults to 0. */
+	rx?: number;
+	/** Opacity of the plate, 0 to 1. Defaults to fully opaque. */
+	opacity?: number;
+}
+/** What roughen() knows about a shape when it asks the caller about it. */
+export interface ShapeInfo {
+	/** Tag name of the source element, e.g. `rect`. */
+	tag: string;
+	/** Attributes of the source element. */
+	attrs: Record<string, string>;
+	/** Computed presentation properties after the cascade. */
+	style: Record<string, string>;
+	/** Running index of this shape in the document, from 0. */
+	index: number;
+}
+export interface RoughenOptions extends Options {
+	/**
+	 * Called for every shape before it is redrawn. Return extra options to
+	 * merge in for this shape only, or `false` to pass the element through
+	 * unchanged.
+	 */
+	onShape?: (shape: ShapeInfo) => Options | false | undefined | void;
+	/**
+	 * Redraw shapes inside `<defs>`, `<marker>`, `<clipPath>` and friends too.
+	 * Off by default — see OPAQUE_SUBTREES.
+	 */
+	includeDefs?: boolean;
+	/**
+	 * Lay a plate of colour behind every label, so text stays readable where a
+	 * hachure fill runs underneath it.
+	 *
+	 * A colour string is shorthand for `{ fill: colour }`, `true` for a white
+	 * plate. Off by default.
+	 */
+	textBackground?: boolean | string | TextBackground;
+	/**
+	 * User units to add around the root `viewBox`.
+	 *
+	 * A sketched line wanders a little outside the shape it stands for, and
+	 * generated documents are usually cropped exactly to their content — so
+	 * without this, the outermost strokes are cut off by the viewport edge.
+	 * Defaults to `2 + 2 * roughness`; set 0 to keep the viewBox as it is.
+	 */
+	padding?: number;
+}
+/**
+ * Redraws every shape in an SVG document in a hand-drawn style.
+ *
+ * @param svg The source SVG document.
+ * @param options Drawing options, plus `onShape` / `includeDefs`.
+ * @returns The document with its shapes replaced, everything else untouched.
+ */
+export declare function roughen(svg: string, options?: RoughenOptions): string;
 /**
  * Main entry point for MLCRough.
  */
@@ -359,6 +419,13 @@ declare const _default: {
 	 * @param node The SVGNode to serialize.
 	 */
 	serialize(node: SVGNode): string;
+	/**
+	 * Redraws every shape of an existing SVG document in a hand-drawn style.
+	 * Text, markers, gradients and the surrounding markup are left untouched.
+	 * @param svg The source SVG document.
+	 * @param options Drawing options, plus `onShape` and `includeDefs`.
+	 */
+	roughen(svg: string, options?: RoughenOptions): string;
 };
 
 export {

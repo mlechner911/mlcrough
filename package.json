@@ -1,6 +1,6 @@
 {
   "name": "mlcrough",
-  "version": "5.2.0",
+  "version": "5.3.0",
   "description": "Create graphics using SVG with a hand-drawn, sketchy, appearance.",
   "type": "module",
   "main": "dist/mlcrough.js",
@@ -8,10 +8,21 @@
     ".": "./dist/mlcrough.js"
   },
   "types": "dist/mlcrough.d.ts",
+  "bin": {
+    "mlcrough": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "USAGE.md"
+  ],
   "scripts": {
-    "dev": "node build.js --watch",
-    "build": "rm -rf dist && tsc --noEmit && node build.js && dts-bundle-generator -o dist/mlcrough.d.ts src/mlcrough.ts",
+    "dev": "vite",
+    "preview": "vite preview",
+    "build:watch": "node build.js --watch",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.cli.json && tsc -p tsconfig.playground.json",
+    "build": "rm -rf dist && npm run typecheck && node build.js && dts-bundle-generator -o dist/mlcrough.d.ts src/mlcrough.ts && chmod +x dist/cli.js",
     "lint": "eslint src",
+    "images": "tsx bin/render-readme-images.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "example:rectangle": "tsx examples/rectangle.ts",
     "example:rectangle2": "tsx examples/rectangle2.ts",
@@ -31,7 +42,9 @@
     "example:multi-style-fill": "tsx examples/multi-style-fill.ts",
     "example:gradient-fills": "tsx examples/gradient-fills.ts",
     "example:multi-dot-fill": "tsx examples/multi-dot-fill.ts",
-    "example:opacity-range": "tsx examples/opacity-range.ts"
+    "example:opacity-range": "tsx examples/opacity-range.ts",
+    "example:roughen-mermaid": "tsx examples/roughen-mermaid.ts",
+    "example:roughen-timegraph": "tsx examples/roughen-timegraph.ts"
   },
   "repository": {
     "type": "git",
@@ -42,7 +55,10 @@
     "graphics",
     "sketchy",
     "hand drawn",
-    "hand-drawn"
+    "hand-drawn",
+    "mermaid",
+    "diagram",
+    "sketch"
   ],
   "author": "Michael Lechner",
   "license": "MIT",
