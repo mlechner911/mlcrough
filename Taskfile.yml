@@ -50,6 +50,16 @@ tasks:
     cmds:
       - npx tsx bin/render-readme-images.ts
 
+  book:images:
+    desc: Regenerate the figures of the handbook under book/images/
+    cmds:
+      - npx tsx bin/render-book-images.ts
+
+  prodweb:asset:
+    desc: Regenerate the product card image under mlcprodweb/assets/
+    cmds:
+      - npx tsx bin/render-prodweb-asset.ts
+
   lint:
     desc: Run ESLint
     cmds:

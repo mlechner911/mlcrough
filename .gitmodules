@@ -1,3 +1,6 @@
 [submodule ".mlcai"]
 	path = .mlcai
 	url = mlc@nas.local:/var/services/homes/mlc/repositories/dochub/mlcrough-mlcai.git
+[submodule "mlcprodweb"]
+	path = mlcprodweb
+	url = mlc@nas.local:/var/services/homes/mlc/repositories/product/mlcrough.git

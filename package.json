@@ -24,6 +24,8 @@
     "prepublishOnly": "npm run build",
     "lint": "eslint src",
     "images": "tsx bin/render-readme-images.ts",
+    "book:images": "tsx bin/render-book-images.ts",
+    "prodweb:asset": "tsx bin/render-prodweb-asset.ts",
     "test": "vitest run",
     "example:rectangle": "tsx examples/rectangle.ts",
     "example:rectangle2": "tsx examples/rectangle2.ts",

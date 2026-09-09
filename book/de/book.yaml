@@ -1,0 +1,19 @@
+id:       mlcrough
+title:    MLCRough
+subtitle: Handgezeichnetes SVG — und wie man ein fertiges Diagramm nachträglich so aussehen lässt
+author:   Michael Lechner
+lang:     de
+accent:   "#7c3aed"
+# Querformat: der Titelplatz ist ein breites Banner, das hochformatige
+# Ablaufdiagramm wuerde darin beschnitten.
+cover_image: chart_rough.svg
+license:     CC BY-NC 4.0
+license_url: https://creativecommons.org/licenses/by-nc/4.0/
+
+# Quellcode und Paket der beschriebenen Bibliothek — die Produktseite ist
+# disabled, das Handbuch ist der Auftritt, also stehen die Wege hier.
+source: https://github.com/mlechner911/mlcrough
+npm:
+  - mlcrough
+
+# Kapitel werden in Dateinamen-Sortierung aus chapters/ geladen.
