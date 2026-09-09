@@ -1,0 +1,19 @@
+id:       mlcrough
+title:    MLCRough
+subtitle: Hand-drawn SVG — and how to make a finished diagram look that way afterwards
+author:   Michael Lechner
+lang:     en
+accent:   "#7c3aed"
+# Landscape: the cover slot is a wide banner, and the portrait pipeline diagram
+# would be cropped inside it.
+cover_image: chart_rough.svg
+license:     CC BY-NC 4.0
+license_url: https://creativecommons.org/licenses/by-nc/4.0/
+
+# Source and package of the library this book describes. The product page is
+# disabled on purpose, so the manual is where these links belong.
+source: https://github.com/mlechner911/mlcrough
+npm:
+  - mlcrough
+
+# Chapters are loaded from chapters/ in filename order.

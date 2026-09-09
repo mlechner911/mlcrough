@@ -124,10 +124,10 @@ function chart(t: Theme): string {
     width: 760,
     height: 360,
     margin: { top: 20, right: 24, bottom: 44, left: 62 },
-    axes: { left: { label: 'Grad Celsius', labels: { color: t.muted }, axis: { color: t.muted } } },
-    thresholds: [{ name: 'warn', value: 21, color: '#dc2626', line: 'dashed', fill: 'above', label: 'Hitzewarnung' }],
+    axes: { left: { label: 'Temperature (°C)', labels: { color: t.muted }, axis: { color: t.muted } } },
+    thresholds: [{ name: 'warn', value: 21, color: '#dc2626', line: 'dashed', fill: 'above', label: 'Heat warning' }],
     series: [{
-      name: 'Temperatur',
+      name: 'Temperature',
       showAs: 'minmaxavg',
       data: band,
       minColor: '#3b82f6', maxColor: '#ef4444', avgColor: t.ink,

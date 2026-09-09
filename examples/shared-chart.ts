@@ -21,6 +21,9 @@ interface Band {
 /**
  * A day of outside temperature: hourly mean with the spread around it.
  *
+ * Labelled in English in both language editions of the handbook, the way
+ * mlctimegraph labels its figures — one set of pictures rather than two.
+ *
  * Computed rather than sampled, so the figure is identical on every run and a
  * regenerated book image produces no diff.
  */
@@ -52,13 +55,13 @@ export function temperatureChart(width: number = 760, height: number = 380): str
     width,
     height,
     margin: { top: 24, right: 24, bottom: 46, left: 62 },
-    axes: { left: { label: 'Grad Celsius' } },
+    axes: { left: { label: 'Temperature (°C)' } },
     thresholds: [
-      { name: 'warn', value: 21, color: '#dc2626', line: 'dashed', fill: 'above', label: 'Hitzewarnung' },
+      { name: 'warn', value: 21, color: '#dc2626', line: 'dashed', fill: 'above', label: 'Heat warning' },
     ],
     series: [
       {
-        name: 'Temperatur',
+        name: 'Temperature',
         showAs: 'minmaxavg',
         data: temperatureBand(),
         minColor: '#2563eb',
