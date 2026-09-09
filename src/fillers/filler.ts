@@ -1,4 +1,4 @@
-import { ResolvedOptions, FillStyle } from '../core';
+import { ResolvedOptions } from '../core';
 import { PatternFiller, RenderHelper } from './filler-interface';
 import { HachureFiller } from './hachure-filler';
 import { ZigZagFiller } from './zigzag-filler';
@@ -11,48 +11,30 @@ import { GradientFiller } from './gradient-filler';
 import { RadialGradientFiller } from './radial-gradient-filler';
 import { MultiDotFiller } from './multi-dot-filler';
 
-const fillers: Partial<Record<FillStyle, PatternFiller>> = {};
-
+/**
+ * Returns the filler for a fill style.
+ *
+ * A filler is built fresh every time, deliberately. It holds the render helper
+ * it was given, and that helper carries the randomizer for one particular
+ * drawing operation — so a cached filler would keep handing every later shape
+ * the randomizer of whichever shape happened to be drawn first. The outlines
+ * stayed reproducible, the fills did not, and `seed` quietly stopped governing
+ * them. The objects are trivial; building one per fill costs nothing next to
+ * the geometry it goes on to compute.
+ */
 export function getFiller(o: ResolvedOptions, helper: RenderHelper): PatternFiller {
-  let fillerName: FillStyle = o.fillStyle || 'hachure';
-  if (!fillers[fillerName]) {
-    switch (fillerName) {
-      case 'zigzag':
-        fillers[fillerName] = new ZigZagFiller(helper);
-        break;
-      case 'cross-hatch':
-        fillers[fillerName] = new HatchFiller(helper);
-        break;
-      case 'dots':
-        fillers[fillerName] = new DotFiller(helper);
-        break;
-      case 'multi-dots':
-        fillers[fillerName] = new MultiDotFiller(helper);
-        break;
-      case 'dashed':
-        fillers[fillerName] = new DashedFiller(helper);
-        break;
-      case 'zigzag-line':
-        fillers[fillerName] = new ZigZagLineFiller(helper);
-        break;
-      case 'multi-hachure':
-        fillers[fillerName] = new MultiHachureFiller(helper);
-        break;
-      case 'gradient':
-        fillers[fillerName] = new GradientFiller(helper);
-        break;
-      case 'radial-gradient':
-        fillers[fillerName] = new RadialGradientFiller(helper);
-        break;
-      case 'solid':
-      case 'hachure':
-      default:
-        fillerName = 'hachure';
-        if (!fillers[fillerName]) {
-          fillers[fillerName] = new HachureFiller(helper);
-        }
-        break;
-    }
+  switch (o.fillStyle) {
+    case 'zigzag': return new ZigZagFiller(helper);
+    case 'cross-hatch': return new HatchFiller(helper);
+    case 'dots': return new DotFiller(helper);
+    case 'multi-dots': return new MultiDotFiller(helper);
+    case 'dashed': return new DashedFiller(helper);
+    case 'zigzag-line': return new ZigZagLineFiller(helper);
+    case 'multi-hachure': return new MultiHachureFiller(helper);
+    case 'gradient': return new GradientFiller(helper);
+    case 'radial-gradient': return new RadialGradientFiller(helper);
+    case 'solid':
+    case 'hachure':
+    default: return new HachureFiller(helper);
   }
-  return fillers[fillerName] as PatternFiller;
 }

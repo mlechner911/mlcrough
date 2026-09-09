@@ -129,8 +129,9 @@ See the `examples` directory for the full source of these implementations.
 npm install
 npm run dev          # Vite playground on http://localhost:3000
 npm run build        # typecheck, bundle, and emit dist/mlcrough.d.ts
-npm run typecheck    # library, CLI and playground, each with its own tsconfig
+npm run typecheck    # library, CLI, playground and tests, each with its own tsconfig
 npm run lint
+npm test             # vitest: parser round trip, CSS cascade, roughen()
 task test            # run every example and build the visual dashboard
 npm run images       # regenerate the figures at the top of this file
 ```

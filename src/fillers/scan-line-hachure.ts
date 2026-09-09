@@ -11,7 +11,8 @@ export function polygonHachureLines(polygonList: Point[][], o: ResolvedOptions):
   gap = Math.round(Math.max(gap, 0.1));
   let skipOffset = 1;
   if (o.roughness >= 1) {
-    if ((o.randomizer?.next() || Math.random()) > 0.7) {
+    // Not `|| Math.random()`: next() may legitimately return 0.
+    if ((o.randomizer ? o.randomizer.next() : Math.random()) > 0.7) {
       skipOffset = gap;
     }
   }

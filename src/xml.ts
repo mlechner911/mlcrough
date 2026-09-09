@@ -15,7 +15,11 @@
 // and is otherwise kept as text, so a slightly broken document still survives
 // the round trip instead of throwing.
 
-/** An element node. `open` and `close` hold the original tag text. */
+/**
+ * An element node. `open` and `close` hold the original tag text — `close` is
+ * empty until the matching closing tag is actually found, so an element the
+ * document never closed is not silently repaired on the way out.
+ */
 export interface XmlElement {
   type: 'element';
   tag: string;
@@ -166,7 +170,7 @@ export function parseXml(source: string): XmlNode[] {
       tag,
       attrs: parseAttrs(open, nameEnd - i),
       open,
-      close: selfClosing ? '' : `</${tag}>`,
+      close: '',
       children: [],
     };
     pushText(text); text = '';
@@ -182,8 +186,12 @@ export function parseXml(source: string): XmlNode[] {
       if (contentEnd > i) el.children.push({ type: 'raw', text: source.slice(i, contentEnd) });
       if (at < 0) { i = source.length; continue; }
       const gt = source.indexOf('>', at);
-      el.close = gt < 0 ? closeTag + '>' : source.slice(at, gt + 1);
-      i = gt < 0 ? source.length : gt + 1;
+      if (gt >= 0) {
+        el.close = source.slice(at, gt + 1);
+        i = gt + 1;
+      } else {
+        i = source.length;
+      }
       continue;
     }
 

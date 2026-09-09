@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      # `npm ci` rather than `npm install`: it fails if package.json and the
+      # lockfile disagree, which is exactly what we want to hear about.
+      - run: npm ci
+
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+
+      # dist/ is committed and the published package is built from it, so a
+      # stale dist/ would ship the wrong code. esbuild's output is
+      # reproducible and its source maps hold only relative paths, so a clean
+      # build must leave the working tree untouched.
+      - name: dist/ matches the sources
+        run: |
+          npm run build
+          git diff --exit-code -- dist \
+            || { echo "::error::dist/ is out of date — run 'npm run build' and commit the result"; exit 1; }
+
+      # The figures in README.md are generated from the same code as the
+      # examples; regenerating them must be a no-op.
+      - name: docs/images/ matches the sources
+        run: |
+          npm run images
+          git diff --exit-code -- docs/images \
+            || { echo "::error::docs/images/ is out of date — run 'npm run images' and commit the result"; exit 1; }

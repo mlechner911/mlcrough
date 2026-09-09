@@ -1,6 +1,6 @@
 {
   "name": "mlcrough",
-  "version": "5.3.0",
+  "version": "5.3.1",
   "description": "Create graphics using SVG with a hand-drawn, sketchy, appearance.",
   "type": "module",
   "main": "dist/mlcrough.js",
@@ -19,11 +19,12 @@
     "dev": "vite",
     "preview": "vite preview",
     "build:watch": "node build.js --watch",
-    "typecheck": "tsc --noEmit && tsc -p tsconfig.cli.json && tsc -p tsconfig.playground.json",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.cli.json && tsc -p tsconfig.playground.json && tsc -p tsconfig.test.json",
     "build": "rm -rf dist && npm run typecheck && node build.js && dts-bundle-generator -o dist/mlcrough.d.ts src/mlcrough.ts && chmod +x dist/cli.js",
+    "prepublishOnly": "npm run build",
     "lint": "eslint src",
     "images": "tsx bin/render-readme-images.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run",
     "example:rectangle": "tsx examples/rectangle.ts",
     "example:rectangle2": "tsx examples/rectangle2.ts",
     "example:circle": "tsx examples/circle.ts",
@@ -44,7 +45,8 @@
     "example:multi-dot-fill": "tsx examples/multi-dot-fill.ts",
     "example:opacity-range": "tsx examples/opacity-range.ts",
     "example:roughen-mermaid": "tsx examples/roughen-mermaid.ts",
-    "example:roughen-timegraph": "tsx examples/roughen-timegraph.ts"
+    "example:roughen-timegraph": "tsx examples/roughen-timegraph.ts",
+    "test:watch": "vitest"
   },
   "repository": {
     "type": "git",
@@ -76,7 +78,8 @@
     "tsx": "^4.23.13",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.70.0",
-    "vite": "^8.2.2"
+    "vite": "^8.2.2",
+    "vitest": "^5.0.0"
   },
   "dependencies": {
     "hachure-fill": "^0.5.2",

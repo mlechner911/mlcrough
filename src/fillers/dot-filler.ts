@@ -31,6 +31,8 @@ export class DotFiller implements PatternFiller {
       fweight = o.strokeWidth / 2;
     }
     const ro = gap / 4;
+    // Use the seeded randomizer, so `seed` governs this fill like every other.
+    const random = (): number => (o.randomizer ? o.randomizer.next() : Math.random());
     for (const line of lines) {
       const length = lineLength(line);
       const dl = length / gap;
@@ -41,8 +43,8 @@ export class DotFiller implements PatternFiller {
 
       for (let i = 0; i < count; i++) {
         const y = minY + offset + (i * gap);
-        const cx = (x - ro) + Math.random() * 2 * ro;
-        const cy = (y - ro) + Math.random() * 2 * ro;
+        const cx = (x - ro) + random() * 2 * ro;
+        const cy = (y - ro) + random() * 2 * ro;
         const el = this.helper.ellipse(cx, cy, fweight, fweight, o);
         ops.push(...el.ops);
       }
