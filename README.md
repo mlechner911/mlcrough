@@ -158,3 +158,8 @@ MIT — see [LICENSE](LICENSE).
 Copyright © 2026 Michael Lechner.
 Copyright © 2019 Preet Shihn, for the [Rough.js](https://github.com/pshihn/rough)
 code this was forked from.
+
+<!-- mlcai-private -->
+## Project documentation (`.mlcai/`)
+
+`.mlcai/` is a **private git submodule**: internal planning, backlog and work notes, maintained with the MLC Doc Hub. It is not publicly accessible — clone **without** `--recurse-submodules`; the build does not need it. Links into `.mlcai/` only work with access (`git submodule update --init .mlcai`).
