@@ -17,6 +17,10 @@ import { fileURLToPath } from 'node:url';
 import mlcrough from '../src/mlcrough.js';
 import { temperatureChart } from '../examples/shared-chart.js';
 
+// The time axis is labelled in local time. Pin it, or a figure rendered in
+// Berlin differs from the one CI renders in UTC and the up-to-date check fails.
+process.env.TZ = 'UTC';
+
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'docs/images');
 fs.mkdirSync(outDir, { recursive: true });

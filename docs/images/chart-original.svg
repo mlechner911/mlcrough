@@ -24,23 +24,23 @@
     <g class="time-axis">
    <line x1="62" y1="334" x2="736" y2="334" stroke="#ccc" stroke-width="1" />
    <line x1="62" y1="334" x2="62" y2="340" stroke="#ddd" stroke-width="1" />
-   <text x="62" y="351" text-anchor="middle" font-size="11" fill="#777">02:00 AM</text>
+   <text x="62" y="351" text-anchor="middle" font-size="11" fill="#777">12:00 AM</text>
    <line x1="146.25" y1="334" x2="146.25" y2="340" stroke="#ddd" stroke-width="1" />
-   <text x="146.25" y="351" text-anchor="middle" font-size="11" fill="#777">05:00 AM</text>
+   <text x="146.25" y="351" text-anchor="middle" font-size="11" fill="#777">03:00 AM</text>
    <line x1="230.5" y1="334" x2="230.5" y2="340" stroke="#ddd" stroke-width="1" />
-   <text x="230.5" y="351" text-anchor="middle" font-size="11" fill="#777">08:00 AM</text>
+   <text x="230.5" y="351" text-anchor="middle" font-size="11" fill="#777">06:00 AM</text>
    <line x1="314.75" y1="334" x2="314.75" y2="340" stroke="#ddd" stroke-width="1" />
-   <text x="314.75" y="351" text-anchor="middle" font-size="11" fill="#777">11:00 AM</text>
+   <text x="314.75" y="351" text-anchor="middle" font-size="11" fill="#777">09:00 AM</text>
    <line x1="399" y1="334" x2="399" y2="340" stroke="#ddd" stroke-width="1" />
-   <text x="399" y="351" text-anchor="middle" font-size="11" fill="#777">02:00 PM</text>
+   <text x="399" y="351" text-anchor="middle" font-size="11" fill="#777">12:00 PM</text>
    <line x1="483.25" y1="334" x2="483.25" y2="340" stroke="#ddd" stroke-width="1" />
-   <text x="483.25" y="351" text-anchor="middle" font-size="11" fill="#777">05:00 PM</text>
+   <text x="483.25" y="351" text-anchor="middle" font-size="11" fill="#777">03:00 PM</text>
    <line x1="567.5" y1="334" x2="567.5" y2="340" stroke="#ddd" stroke-width="1" />
-   <text x="567.5" y="351" text-anchor="middle" font-size="11" fill="#777">08:00 PM</text>
+   <text x="567.5" y="351" text-anchor="middle" font-size="11" fill="#777">06:00 PM</text>
    <line x1="651.75" y1="334" x2="651.75" y2="340" stroke="#ddd" stroke-width="1" />
-   <text x="651.75" y="351" text-anchor="middle" font-size="11" fill="#777">11:00 PM</text>
+   <text x="651.75" y="351" text-anchor="middle" font-size="11" fill="#777">09:00 PM</text>
    <line x1="736" y1="334" x2="736" y2="340" stroke="#ddd" stroke-width="1" />
-   <text x="736" y="351" text-anchor="middle" font-size="11" fill="#777">02:00 AM</text>
+   <text x="736" y="351" text-anchor="middle" font-size="11" fill="#777">12:00 AM</text>
 </g>
     <g class="thresholds" clip-path="url(#clip-plot)">
    <g class="threshold threshold--warn" id="threshold-warn">
