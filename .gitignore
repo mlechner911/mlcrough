@@ -4,3 +4,6 @@ node_modules
 bug.html
 .npmrc
 dist-playground
+
+# lokale MCP-Konfiguration (dochub-cli agent-rules)
+.mcp.json
