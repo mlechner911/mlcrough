@@ -1,3 +1,0 @@
-[submodule "mlcprodweb"]
-	path = mlcprodweb
-	url = mlc@nas.local:/var/services/homes/mlc/repositories/product/mlcrough.git
